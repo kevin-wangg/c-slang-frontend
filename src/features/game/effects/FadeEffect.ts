@@ -1,8 +1,8 @@
-import { Constants, screenCenter, screenSize } from '../commons/CommonConstants';
-import { IBaseScene } from '../commons/CommonTypes';
-import { Layer } from '../layer/GameLayerTypes';
-import { sleep } from '../utils/GameUtils';
-import { HexColor } from '../utils/StyleUtils';
+import { Constants, screenCenter, screenSize } from '../commons/CommonConstants'
+import { IBaseScene } from '../commons/CommonTypes'
+import { Layer } from '../layer/GameLayerTypes'
+import { sleep } from '../utils/GameUtils'
+import { HexColor } from '../utils/StyleUtils'
 
 /**
  * Generates a tween configuration for making objects fade out of scene.
@@ -12,14 +12,14 @@ import { HexColor } from '../utils/StyleUtils';
  * @returns {Phaser.Types.Tweens.TweenDataConfig} - the tween config for the fadeout animation
  */
 export const fadeOut = (
-  targets: Phaser.GameObjects.GameObject[],
-  duration = Constants.fadeDuration
+    targets: Phaser.GameObjects.GameObject[],
+    duration = Constants.fadeDuration
 ) => ({
-  alpha: 0,
-  targets,
-  duration,
-  ease: 'Power2'
-});
+    alpha: 0,
+    targets,
+    duration,
+    ease: 'Power2'
+})
 
 /**
  * Generates a tween configuration for making objects fade into scene.
@@ -30,22 +30,22 @@ export const fadeOut = (
  * @returns {Phaser.Types.Tweens.TweenDataConfig} - the tween config for the fadein animation
  */
 export const fadeIn = (
-  targets: Phaser.GameObjects.GameObject[],
-  duration = Constants.fadeDuration
+    targets: Phaser.GameObjects.GameObject[],
+    duration = Constants.fadeDuration
 ) => ({
-  alpha: 1,
-  targets,
-  duration,
-  ease: 'Power2'
-});
+    alpha: 1,
+    targets,
+    duration,
+    ease: 'Power2'
+})
 
 /**
  * @typedef {FadeProps} - props to specify additional properties/configuration for a fade animation
  * @prop fadeDuration - how long to fade in and out
  */
 type FadeProps = {
-  fadeDuration?: number;
-};
+    fadeDuration?: number
+}
 
 /**
  * Function that makes a game object fade out, and after the animation,
@@ -56,13 +56,13 @@ type FadeProps = {
  * @param fadeProps - additional properties/configuration describing the fade animation
  */
 export function fadeAndDestroy(
-  scene: Phaser.Scene,
-  object: Phaser.GameObjects.GameObject | null,
-  { fadeDuration }: FadeProps = {}
+    scene: Phaser.Scene,
+    object: Phaser.GameObjects.GameObject | null,
+    { fadeDuration }: FadeProps = {}
 ) {
-  if (!object) return;
-  scene.add.tween(fadeOut([object], fadeDuration || Constants.fadeDuration));
-  setTimeout(() => object.destroy(), fadeDuration || Constants.fadeDuration);
+    if (!object) return
+    scene.add.tween(fadeOut([object], fadeDuration || Constants.fadeDuration))
+    setTimeout(() => object.destroy(), fadeDuration || Constants.fadeDuration)
 }
 
 /**
@@ -71,14 +71,14 @@ export function fadeAndDestroy(
  * @param scene - the scene to add this screen to
  */
 export function blackScreen(scene: Phaser.Scene) {
-  return new Phaser.GameObjects.Rectangle(
-    scene,
-    screenCenter.x,
-    screenCenter.y,
-    screenSize.x,
-    screenSize.y,
-    0
-  );
+    return new Phaser.GameObjects.Rectangle(
+        scene,
+        screenCenter.x,
+        screenCenter.y,
+        screenSize.x,
+        screenSize.y,
+        0
+    )
 }
 
 /**
@@ -87,14 +87,14 @@ export function blackScreen(scene: Phaser.Scene) {
  * @param scene - the scene to add this screen to
  */
 export function whiteScreen(scene: Phaser.Scene) {
-  return new Phaser.GameObjects.Rectangle(
-    scene,
-    screenCenter.x,
-    screenCenter.y,
-    screenSize.x,
-    screenSize.y,
-    HexColor.white
-  );
+    return new Phaser.GameObjects.Rectangle(
+        scene,
+        screenCenter.x,
+        screenCenter.y,
+        screenSize.x,
+        screenSize.y,
+        HexColor.white
+    )
 }
 
 /**
@@ -106,27 +106,27 @@ export function whiteScreen(scene: Phaser.Scene) {
  * @param callback - the function that is called during the transition
  */
 export const blackFade = async (
-  scene: IBaseScene,
-  fadeDuration: number,
-  delay: number,
-  callback: any
+    scene: IBaseScene,
+    fadeDuration: number,
+    delay: number,
+    callback: any
 ) => {
-  const fadeBlack = blackScreen(scene);
-  scene.getLayerManager().addToLayer(Layer.Effects, fadeBlack);
+    const fadeBlack = blackScreen(scene)
+    scene.getLayerManager().addToLayer(Layer.Effects, fadeBlack)
 
-  fadeBlack.setAlpha(0);
-  scene.tweens.add(fadeIn([fadeBlack], fadeDuration));
-  await sleep(fadeDuration);
+    fadeBlack.setAlpha(0)
+    scene.tweens.add(fadeIn([fadeBlack], fadeDuration))
+    await sleep(fadeDuration)
 
-  await callback();
-  await sleep(delay);
+    await callback()
+    await sleep(delay)
 
-  fadeBlack.setAlpha(1);
-  scene.tweens.add(fadeOut([fadeBlack], fadeDuration));
-  await sleep(fadeDuration);
+    fadeBlack.setAlpha(1)
+    scene.tweens.add(fadeOut([fadeBlack], fadeDuration))
+    await sleep(fadeDuration)
 
-  fadeBlack.destroy();
-};
+    fadeBlack.destroy()
+}
 
 /**
  * Makes a game object object blink through fade ins and fade outs
@@ -136,23 +136,23 @@ export const blackFade = async (
  * @returns {() => void} - clearBlink is a function. When called, it stops the blinking.
  */
 export function blink(
-  scene: Phaser.Scene,
-  gameObject: Phaser.GameObjects.Image | Phaser.GameObjects.Container
+    scene: Phaser.Scene,
+    gameObject: Phaser.GameObjects.Image | Phaser.GameObjects.Container
 ) {
-  let i = 0;
-  const blink = setInterval(() => {
-    if (i % 2 !== 0) {
-      gameObject.setAlpha(0);
-      scene.tweens.add(fadeIn([gameObject], 250));
-    } else {
-      gameObject.setAlpha(1);
-      scene.tweens.add(fadeOut([gameObject], 250));
+    let i = 0
+    const blink = setInterval(() => {
+        if (i % 2 !== 0) {
+            gameObject.setAlpha(0)
+            scene.tweens.add(fadeIn([gameObject], 250))
+        } else {
+            gameObject.setAlpha(1)
+            scene.tweens.add(fadeOut([gameObject], 250))
+        }
+        i++
+    }, 500)
+    function clearBlink() {
+        i = 0
+        clearInterval(blink)
     }
-    i++;
-  }, 500);
-  function clearBlink() {
-    i = 0;
-    clearInterval(blink);
-  }
-  return clearBlink;
+    return clearBlink
 }

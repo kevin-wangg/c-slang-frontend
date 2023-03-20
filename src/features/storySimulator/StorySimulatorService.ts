@@ -1,31 +1,31 @@
-import _ from 'lodash';
+import _ from 'lodash'
 
-import { sendAdminStoryRequest, sendAssetRequest, sendStoryRequest } from './StorySimulatorRequest';
-import { ChapterDetail } from './StorySimulatorTypes';
+import { sendAdminStoryRequest, sendAssetRequest, sendStoryRequest } from './StorySimulatorRequest'
+import { ChapterDetail } from './StorySimulatorTypes'
 
 /**
  * List of all folders to fetch S3 assets from
  */
 export const s3AssetFolders = [
-  'locations',
-  'objects',
-  'images',
-  'avatars',
-  'ui',
-  'sfx',
-  'bgm',
-  'stories'
-];
+    'locations',
+    'objects',
+    'images',
+    'avatars',
+    'ui',
+    'sfx',
+    'bgm',
+    'stories'
+]
 
 export function obtainTextAssets(assetPaths: string[]) {
-  return assetPaths
-    .filter(assetPath => assetPath.startsWith('stories') && assetPath.endsWith('txt'))
-    .map(
-      assetPath => assetPath.slice(8) // remove /stories
-    );
+    return assetPaths
+        .filter(assetPath => assetPath.startsWith('stories') && assetPath.endsWith('txt'))
+        .map(
+            assetPath => assetPath.slice(8) // remove /stories
+        )
 }
 
-export const fetchTextAssets = async () => obtainTextAssets(await fetchFolder('stories'));
+export const fetchTextAssets = async () => obtainTextAssets(await fetchFolder('stories'))
 
 /**
  * Request to fetches assets from all S3 folders
@@ -33,13 +33,13 @@ export const fetchTextAssets = async () => obtainTextAssets(await fetchFolder('s
  * @returns {Promise<string[]>} - full concatenated list of files in the given S3 folders
  */
 export async function fetchAssetPaths(): Promise<string[]> {
-  const files = await Promise.all(
-    s3AssetFolders.map(async folderName => {
-      const files = await fetchFolder(folderName);
-      return files.length ? files : [`${folderName}`];
-    })
-  );
-  return files.reduce((combinedList, newList) => combinedList.concat(newList), []);
+    const files = await Promise.all(
+        s3AssetFolders.map(async folderName => {
+            const files = await fetchFolder(folderName)
+            return files.length ? files : [`${folderName}`]
+        })
+    )
+    return files.reduce((combinedList, newList) => combinedList.concat(newList), [])
 }
 
 /**
@@ -49,10 +49,10 @@ export async function fetchAssetPaths(): Promise<string[]> {
  * @returns {Promise<string[]>} - list of files in S3 folder
  */
 async function fetchFolder(folderName: string) {
-  const response = await sendAssetRequest(folderName, 'GET', {
-    'Content-Type': 'application/json'
-  });
-  return response.status === 200 ? response.json() : [];
+    const response = await sendAssetRequest(folderName, 'GET', {
+        'Content-Type': 'application/json'
+    })
+    return response.status === 200 ? response.json() : []
 }
 
 /**
@@ -62,9 +62,9 @@ async function fetchFolder(folderName: string) {
  * @returns {Promise<string>} - request response
  */
 export async function deleteS3File(assetPath: string) {
-  const response = await sendAssetRequest(assetPath, 'DELETE');
-  const message = await response.text();
-  return message || 'Successfully Deleted';
+    const response = await sendAssetRequest(assetPath, 'DELETE')
+    const message = await response.text()
+    return message || 'Successfully Deleted'
 }
 
 /**
@@ -75,13 +75,13 @@ export async function deleteS3File(assetPath: string) {
  * @returns {Promise<string>} - Request responses, concatentated together
  */
 export async function uploadAssetsToS3(fileList: FileList, folderName: string) {
-  const responses = await Promise.all(
-    Array.from(fileList).map(async file => {
-      const response = await uploadAssetToS3(file, folderName);
-      return file.name + ' => ' + response;
-    })
-  );
-  return responses.join('\n');
+    const responses = await Promise.all(
+        Array.from(fileList).map(async file => {
+            const response = await uploadAssetToS3(file, folderName)
+            return file.name + ' => ' + response
+        })
+    )
+    return responses.join('\n')
 }
 
 /**
@@ -92,17 +92,17 @@ export async function uploadAssetsToS3(fileList: FileList, folderName: string) {
  * @returns {Promise<string>} - Request response
  */
 export async function uploadAssetToS3(file: File, folderName: string) {
-  const formData = new FormData();
-  formData.set('upload', file);
+    const formData = new FormData()
+    formData.set('upload', file)
 
-  const response = await sendAssetRequest(
-    `${folderName}/${file.name}`,
-    'POST',
-    {},
-    { body: formData, mode: 'cors' }
-  );
+    const response = await sendAssetRequest(
+        `${folderName}/${file.name}`,
+        'POST',
+        {},
+        { body: formData, mode: 'cors' }
+    )
 
-  return response ? response.text() : '';
+    return response ? response.text() : ''
 }
 
 /**
@@ -112,9 +112,12 @@ export async function uploadAssetToS3(file: File, folderName: string) {
  * @returns {Promise<object[]>} - All the chapter objects in a list
  */
 export async function fetchChapters(): Promise<ChapterDetail[]> {
-  const response = await sendStoryRequest('', 'GET');
-  const chapterDetails = response.status === 200 ? await response.json() : [];
-  return _.sortBy(chapterDetails, (chapterDetail: ChapterDetail) => new Date(chapterDetail.openAt));
+    const response = await sendStoryRequest('', 'GET')
+    const chapterDetails = response.status === 200 ? await response.json() : []
+    return _.sortBy(
+        chapterDetails,
+        (chapterDetail: ChapterDetail) => new Date(chapterDetail.openAt)
+    )
 }
 
 /**
@@ -123,17 +126,17 @@ export async function fetchChapters(): Promise<ChapterDetail[]> {
  * @returns {Promise<string>} - Response
  */
 export async function updateChapterRequest(id: string, body: object) {
-  const response = await sendAdminStoryRequest(
-    id,
-    'POST',
-    {
-      'Content-Type': 'application/json'
-    },
-    {
-      body: JSON.stringify(body)
-    }
-  );
-  return response.status === 200 ? 'Chapter successfully created/updated' : response.text();
+    const response = await sendAdminStoryRequest(
+        id,
+        'POST',
+        {
+            'Content-Type': 'application/json'
+        },
+        {
+            body: JSON.stringify(body)
+        }
+    )
+    return response.status === 200 ? 'Chapter successfully created/updated' : response.text()
 }
 
 /**
@@ -142,6 +145,6 @@ export async function updateChapterRequest(id: string, body: object) {
  * @returns {Promise<string>} - Response
  */
 export async function deleteChapterRequest(id: string) {
-  const response = await sendAdminStoryRequest(id, 'DELETE');
-  return response.status === 204 ? 'Chapter successfully deleted' : response.text();
+    const response = await sendAdminStoryRequest(id, 'DELETE')
+    return response.status === 204 ? 'Chapter successfully deleted' : response.text()
 }

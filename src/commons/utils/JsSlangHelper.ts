@@ -5,9 +5,9 @@ import { stringify } from 'c-slang/dist/utils/stringify';
 import { difference, keys } from 'lodash';
 import EnvVisualizer from 'src/features/envVisualizer/EnvVisualizer';
 
-import DataVisualizer from '../../features/dataVisualizer/dataVisualizer';
-import { Data } from '../../features/dataVisualizer/dataVisualizerTypes';
-import DisplayBufferService from './DisplayBufferService';
+import DataVisualizer from '../../features/dataVisualizer/dataVisualizer'
+import { Data } from '../../features/dataVisualizer/dataVisualizerTypes'
+import DisplayBufferService from './DisplayBufferService'
 
 /**
  * This file contains wrappers for certain functions
@@ -28,8 +28,8 @@ import DisplayBufferService from './DisplayBufferService';
  *   which REPL the value shows up in.
  */
 function display(value: Value, str: string, workspaceLocation: any) {
-  display((str === undefined ? '' : str + ' ') + stringify(value), '', workspaceLocation);
-  return value;
+    display((str === undefined ? '' : str + ' ') + stringify(value), '', workspaceLocation)
+    return value
 }
 
 /**
@@ -44,10 +44,10 @@ function display(value: Value, str: string, workspaceLocation: any) {
  *   which REPL the value shows up in.
  */
 function rawDisplay(value: Value, str: string, workspaceLocation: any) {
-  const output = (str === undefined ? '' : str + ' ') + String(value);
-  DisplayBufferService.push(output, workspaceLocation);
+    const output = (str === undefined ? '' : str + ' ') + String(value)
+    DisplayBufferService.push(output, workspaceLocation)
 
-  return value;
+    return value
 }
 
 /**
@@ -57,7 +57,7 @@ function rawDisplay(value: Value, str: string, workspaceLocation: any) {
  * @param value the value to be displayed as a prompt
  */
 function cadetPrompt(value: any) {
-  return prompt(value);
+    return prompt(value)
 }
 
 /**
@@ -67,7 +67,7 @@ function cadetPrompt(value: any) {
  * @param value the value to alert the user with
  */
 function cadetAlert(value: any) {
-  alert(stringify(value));
+    alert(stringify(value))
 }
 
 /**
@@ -78,49 +78,49 @@ function cadetAlert(value: any) {
  * @param args the data to be visualized.
  */
 function visualizeData(...args: Data[]) {
-  try {
-    // Pass in args[0] since args is in the form; [(Array of drawables), "playground"]
-    DataVisualizer.drawData(args[0]);
+    try {
+        // Pass in args[0] since args is in the form; [(Array of drawables), "playground"]
+        DataVisualizer.drawData(args[0])
 
-    // If there is only one arg, just print out the first arg in REPL, instead of [first arg]
-    return args[0].length === 1 ? args[0][0] : args[0];
-  } catch (err) {
-    console.log(err);
-    throw new Error('Data visualizer is not enabled');
-  }
+        // If there is only one arg, just print out the first arg in REPL, instead of [first arg]
+        return args[0].length === 1 ? args[0][0] : args[0]
+    } catch (err) {
+        console.log(err)
+        throw new Error('Data visualizer is not enabled')
+    }
 }
 
 export function visualizeEnv({ context }: { context: Context }) {
-  try {
-    EnvVisualizer.drawEnv(context);
-  } catch (err) {
-    throw new Error('Env visualizer is not enabled');
-  }
+    try {
+        EnvVisualizer.drawEnv(context)
+    } catch (err) {
+        throw new Error('Env visualizer is not enabled')
+    }
 }
 
 export function highlightClean() {
-  if ((window as any).Inspector) {
-    (window as any).Inspector.highlightClean();
-  } else {
-    throw new Error('Inspector not loaded');
-  }
+    if ((window as any).Inspector) {
+        ;(window as any).Inspector.highlightClean()
+    } else {
+        throw new Error('Inspector not loaded')
+    }
 }
 
 export function highlightLine(line: number) {
-  if ((window as any).Inspector) {
-    (window as any).Inspector.highlightLine(line);
-  } else {
-    throw new Error('Inspector not loaded');
-  }
+    if ((window as any).Inspector) {
+        ;(window as any).Inspector.highlightLine(line)
+    } else {
+        throw new Error('Inspector not loaded')
+    }
 }
 
 export const externalBuiltIns = {
-  display,
-  rawDisplay,
-  prompt: cadetPrompt,
-  alert: cadetAlert,
-  visualiseList: visualizeData
-};
+    display,
+    rawDisplay,
+    prompt: cadetPrompt,
+    alert: cadetAlert,
+    visualiseList: visualizeData
+}
 
 /**
  * A wrapper around c-slang's createContext. This
@@ -128,13 +128,12 @@ export const externalBuiltIns = {
  * externalBuiltIns, such as display and prompt.
  */
 export function createContext<T>(
-  externals: string[],
-  externalContext: T,
-  variant: Variant = Variant.DEFAULT
+    externals: string[],
+    externalContext: T,
+    variant: Variant = Variant.DEFAULT
 ) {
-  return createSlangContext<T>(variant, externals, externalContext);
+    return createSlangContext<T>(variant, externals, externalContext)
 }
-
 
 // Given a Context, returns a privileged Context that when referenced,
 // intercepts reads from the underlying Context and returns desired values
@@ -193,26 +192,30 @@ export function makeElevatedContext(context: Context) {
 }
 
 export function getDifferenceInMethods(elevatedContext: Context, context: Context) {
-  const eFrame = elevatedContext.runtime.environments[0].head;
-  const frame = context.runtime.environments[0].head;
-  return difference(keys(eFrame), keys(frame));
+    const eFrame = elevatedContext.runtime.environments[0].head
+    const frame = context.runtime.environments[0].head
+    return difference(keys(eFrame), keys(frame))
 }
 
 export function getStoreExtraMethodsString(toRemove: string[], unblockKey: string) {
-  return `const _____${unblockKey} = [${toRemove.join(', ')}];`;
+    return `const _____${unblockKey} = [${toRemove.join(', ')}];`
 }
 
 export function getRestoreExtraMethodsString(removed: string[], unblockKey: string) {
-  const store = `_____${unblockKey}`;
-  return removed
-    .map((x, key) => (x === 'makeUndefinedErrorFunction' ? '' : `const ${x} = ${store}[${key}];`))
-    .join('\n');
+    const store = `_____${unblockKey}`
+    return removed
+        .map((x, key) =>
+            x === 'makeUndefinedErrorFunction' ? '' : `const ${x} = ${store}[${key}];`
+        )
+        .join('\n')
 }
 
 export function getBlockExtraMethodsString(toRemove: string[]) {
-  return toRemove
-    .map(x =>
-      x === 'makeUndefinedErrorFunction' ? '' : `const ${x} = makeUndefinedErrorFunction('${x}');`
-    )
-    .join('\n');
+    return toRemove
+        .map(x =>
+            x === 'makeUndefinedErrorFunction'
+                ? ''
+                : `const ${x} = makeUndefinedErrorFunction('${x}');`
+        )
+        .join('\n')
 }

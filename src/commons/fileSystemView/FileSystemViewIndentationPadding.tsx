@@ -1,21 +1,21 @@
-import React from 'react';
+import React from 'react'
 
 export type FileSystemViewIndentationPaddingProps = {
-  indentationLevel: number;
-};
+    indentationLevel: number
+}
 
-const SPACING_PER_LEVEL = 19;
+const SPACING_PER_LEVEL = 19
 
 const FileSystemViewIndentationPadding: React.FC<FileSystemViewIndentationPaddingProps> = (
-  props: FileSystemViewIndentationPaddingProps
+    props: FileSystemViewIndentationPaddingProps
 ) => {
-  const { indentationLevel } = props;
+    const { indentationLevel } = props
 
-  const indentationStyle: React.CSSProperties = {
-    paddingLeft: `${SPACING_PER_LEVEL * indentationLevel}px`
-  };
+    const indentationStyle: React.CSSProperties = {
+        paddingLeft: `${SPACING_PER_LEVEL * indentationLevel}px`
+    }
 
-  return <div style={indentationStyle} />;
-};
+    return <div style={indentationStyle} />
+}
 
-export default FileSystemViewIndentationPadding;
+export default FileSystemViewIndentationPadding

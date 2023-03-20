@@ -1,16 +1,16 @@
-import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
-import { bindActionCreators, Dispatch } from 'redux';
+import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux'
+import { bindActionCreators, Dispatch } from 'redux'
 
-import { OverallState } from '../../commons/application/ApplicationTypes';
-import Achievement, { DispatchProps, StateProps } from './Achievement';
+import { OverallState } from '../../commons/application/ApplicationTypes'
+import Achievement, { DispatchProps, StateProps } from './Achievement'
 
 const mapStateToProps: MapStateToProps<StateProps, {}, OverallState> = state => ({
-  role: state.session.role!
-});
+    role: state.session.role!
+})
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: Dispatch) =>
-  bindActionCreators({}, dispatch);
+    bindActionCreators({}, dispatch)
 
-const AchievementContainer = connect(mapStateToProps, mapDispatchToProps)(Achievement);
+const AchievementContainer = connect(mapStateToProps, mapDispatchToProps)(Achievement)
 
-export default AchievementContainer;
+export default AchievementContainer

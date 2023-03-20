@@ -1,18 +1,18 @@
-import React from 'react';
+import React from 'react'
 
 export enum EditorBinding {
-  NONE = '',
-  VIM = 'vim',
-  EMACS = 'emacs'
+    NONE = '',
+    VIM = 'vim',
+    EMACS = 'emacs'
 }
 
 export type WorkspaceSettings = {
-  editorBinding: EditorBinding;
-};
+    editorBinding: EditorBinding
+}
 
 export const defaultWorkspaceSettings: WorkspaceSettings = {
-  editorBinding: EditorBinding.NONE
-};
+    editorBinding: EditorBinding.NONE
+}
 
 /**
  * The WorkspaceSettingsContext stores the local storage-based application settings.
@@ -20,5 +20,5 @@ export const defaultWorkspaceSettings: WorkspaceSettings = {
  * The local storage state is initialized in Application.tsx via the useLocalStorageState hook.
  */
 export const WorkspaceSettingsContext = React.createContext<
-  [WorkspaceSettings, React.Dispatch<React.SetStateAction<WorkspaceSettings>>] | null
->(null);
+    [WorkspaceSettings, React.Dispatch<React.SetStateAction<WorkspaceSettings>>] | null
+>(null)

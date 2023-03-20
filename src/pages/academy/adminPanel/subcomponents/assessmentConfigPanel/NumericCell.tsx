@@ -1,34 +1,34 @@
-import { NumericInput } from '@blueprintjs/core';
-import React from 'react';
-import { AssessmentConfiguration } from 'src/commons/assessment/AssessmentTypes';
-import { KeysOfType } from 'src/commons/utils/TypeHelper';
+import { NumericInput } from '@blueprintjs/core'
+import React from 'react'
+import { AssessmentConfiguration } from 'src/commons/assessment/AssessmentTypes'
+import { KeysOfType } from 'src/commons/utils/TypeHelper'
 
-type NumericCellProps = OwnProps;
+type NumericCellProps = OwnProps
 
 type OwnProps = {
-  data: AssessmentConfiguration;
-  field: KeysOfType<AssessmentConfiguration, number>;
-  rowIndex: number;
-  setStateHandler: (index: number, value: number) => void;
-};
+    data: AssessmentConfiguration
+    field: KeysOfType<AssessmentConfiguration, number>
+    rowIndex: number
+    setStateHandler: (index: number, value: number) => void
+}
 
 const NumericCell: React.FC<NumericCellProps> = props => {
-  const { data } = props;
+    const { data } = props
 
-  const changeHandler = React.useCallback(
-    (value: number) => {
-      props.setStateHandler(props.rowIndex, value);
-    },
-    [props]
-  );
+    const changeHandler = React.useCallback(
+        (value: number) => {
+            props.setStateHandler(props.rowIndex, value)
+        },
+        [props]
+    )
 
-  return (
-    <NumericInput
-      value={data[props.field]}
-      min={0}
-      clampValueOnBlur
-      onValueChange={changeHandler}
-    />
-  );
-};
-export default NumericCell;
+    return (
+        <NumericInput
+            value={data[props.field]}
+            min={0}
+            clampValueOnBlur
+            onValueChange={changeHandler}
+        />
+    )
+}
+export default NumericCell

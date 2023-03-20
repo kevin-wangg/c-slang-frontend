@@ -1,34 +1,34 @@
-import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
-import { bindActionCreators, Dispatch } from 'redux';
+import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux'
+import { bindActionCreators, Dispatch } from 'redux'
 
 import {
-  acknowledgeNotifications,
-  fetchGradingOverviews,
-  reautogradeSubmission,
-  unsubmitSubmission
-} from '../../../commons/application/actions/SessionActions';
-import { OverallState } from '../../../commons/application/ApplicationTypes';
-import Grading, { DispatchProps, StateProps } from './Grading';
+    acknowledgeNotifications,
+    fetchGradingOverviews,
+    reautogradeSubmission,
+    unsubmitSubmission
+} from '../../../commons/application/actions/SessionActions'
+import { OverallState } from '../../../commons/application/ApplicationTypes'
+import Grading, { DispatchProps, StateProps } from './Grading'
 
 const mapStateToProps: MapStateToProps<StateProps, {}, OverallState> = state => ({
-  gradingOverviews: state.session.gradingOverviews,
-  courseRegId: state.session.courseRegId,
-  notifications: state.session.notifications,
-  role: state.session.role,
-  courseId: state.session.courseId
-});
+    gradingOverviews: state.session.gradingOverviews,
+    courseRegId: state.session.courseRegId,
+    notifications: state.session.notifications,
+    role: state.session.role,
+    courseId: state.session.courseId
+})
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: Dispatch) =>
-  bindActionCreators(
-    {
-      handleAcknowledgeNotifications: acknowledgeNotifications,
-      handleFetchGradingOverviews: fetchGradingOverviews,
-      handleUnsubmitSubmission: unsubmitSubmission,
-      handleReautogradeSubmission: reautogradeSubmission
-    },
-    dispatch
-  );
+    bindActionCreators(
+        {
+            handleAcknowledgeNotifications: acknowledgeNotifications,
+            handleFetchGradingOverviews: fetchGradingOverviews,
+            handleUnsubmitSubmission: unsubmitSubmission,
+            handleReautogradeSubmission: reautogradeSubmission
+        },
+        dispatch
+    )
 
-const GradingContainer = connect(mapStateToProps, mapDispatchToProps)(Grading);
+const GradingContainer = connect(mapStateToProps, mapDispatchToProps)(Grading)
 
-export default GradingContainer;
+export default GradingContainer

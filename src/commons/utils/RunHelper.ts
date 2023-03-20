@@ -11,8 +11,8 @@
  * @returns             Promise that resolves to ReturnType of runFunc
  */
 export async function runWrapper<ReturnType>(
-  runFunc: (...args: any[]) => ReturnType,
-  ...runFuncArgs: any[]
+    runFunc: (...args: any[]) => ReturnType,
+    ...runFuncArgs: any[]
 ): Promise<ReturnType> {
-  return await new Promise((resolve, _) => setTimeout(() => resolve(runFunc(...runFuncArgs)), 0));
+    return await new Promise((resolve, _) => setTimeout(() => resolve(runFunc(...runFuncArgs)), 0))
 }

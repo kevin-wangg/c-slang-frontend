@@ -5,9 +5,9 @@
  * @prop {UserSaveState} userSaveState - the object that stores settings and information about the player, available regardless of which chapter they are at
  */
 export type FullSaveState = {
-  gameSaveStates: { [chapterNum: number]: GameSaveState };
-  userSaveState: UserSaveState;
-};
+    gameSaveStates: { [chapterNum: number]: GameSaveState }
+    userSaveState: UserSaveState
+}
 
 /**
  * @typedef {GameSaveState} - this encapsulates data of students' progress in the game in one checkpoint
@@ -22,17 +22,17 @@ export type FullSaveState = {
  * @prop {string[]} triggeredActions - list of actions that have been triggered by player
  */
 export type GameSaveState = {
-  lastCheckpointPlayed: number;
-  currentLocation: string | undefined;
-  currentPhase: string;
-  chapterNewlyCompleted: boolean;
+    lastCheckpointPlayed: number
+    currentLocation: string | undefined
+    currentPhase: string
+    chapterNewlyCompleted: boolean
 
-  incompleteTasks: string[];
-  completedTasks: string[];
-  completedObjectives: string[];
-  triggeredInteractions: string[];
-  triggeredStateChangeActions: string[];
-};
+    incompleteTasks: string[]
+    completedTasks: string[]
+    completedObjectives: string[]
+    triggeredInteractions: string[]
+    triggeredStateChangeActions: string[]
+}
 
 /**
  * @typedef {UserSaveState} - this encapsulates data about students player account throughout the game
@@ -42,17 +42,17 @@ export type GameSaveState = {
  * @prop {number} largestCompletedChapter - the largest chapter number which the students have played (used black tinting chapters in chapter select)
  */
 export type UserSaveState = {
-  settings: SettingsJson;
-  recentlyPlayedCheckpoint: [number, number];
-  collectibles: string[];
-  largestCompletedChapter: number;
-};
+    settings: SettingsJson
+    recentlyPlayedCheckpoint: [number, number]
+    collectibles: string[]
+    largestCompletedChapter: number
+}
 
 /**
  * @typedef {SettingsJson} - this encapsulates data about students settings
  * @prop {number} volume - volume that students play the game with
  */
 export type SettingsJson = {
-  bgmVolume: number;
-  sfxVolume: number;
-};
+    bgmVolume: number
+    sfxVolume: number
+}

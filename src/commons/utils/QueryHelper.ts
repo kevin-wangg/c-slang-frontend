@@ -1,8 +1,8 @@
-import * as qs from 'query-string';
-import { isArray } from 'util';
+import * as qs from 'query-string'
+import { isArray } from 'util'
 
 export interface IParsedQuery {
-  [key: string]: string | undefined;
+    [key: string]: string | undefined
 }
 
 /**
@@ -12,14 +12,14 @@ export interface IParsedQuery {
  * the object has only strings).
  */
 export function parseQuery(query: string): IParsedQuery {
-  const parsed = qs.parse(query);
-  for (const [key, val] of Object.entries(parsed)) {
-    if (isArray(val)) {
-      parsed[key] = val.join(',');
-    } else if (val === null) {
-      delete parsed[key];
+    const parsed = qs.parse(query)
+    for (const [key, val] of Object.entries(parsed)) {
+        if (isArray(val)) {
+            parsed[key] = val.join(',')
+        } else if (val === null) {
+            delete parsed[key]
+        }
     }
-  }
 
-  return parsed as IParsedQuery;
+    return parsed as IParsedQuery
 }

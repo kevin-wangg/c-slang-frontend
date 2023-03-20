@@ -1,73 +1,76 @@
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import 'ag-grid-community/dist/styles/ag-grid.css'
+import 'ag-grid-community/dist/styles/ag-theme-balham.css'
 
-import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
-import { AgGridReact } from 'ag-grid-react';
-import { startCase } from 'lodash';
-import * as React from 'react';
+import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community'
+import { AgGridReact } from 'ag-grid-react'
+import { startCase } from 'lodash'
+import * as React from 'react'
 
-import ContentDisplay from '../../../commons/ContentDisplay';
-import { GradingSummary } from '../../../features/dashboard/DashboardTypes';
+import ContentDisplay from '../../../commons/ContentDisplay'
+import { GradingSummary } from '../../../features/dashboard/DashboardTypes'
 
-type DashboardProps = DispatchProps & StateProps;
+type DashboardProps = DispatchProps & StateProps
 
 export type DispatchProps = {
-  handleFetchGradingSummary: () => void;
-};
+    handleFetchGradingSummary: () => void
+}
 
 export type StateProps = {
-  gradingSummary: GradingSummary;
-};
+    gradingSummary: GradingSummary
+}
 
 const defaultColumnDefs: ColDef = {
-  filter: true,
-  resizable: true,
-  sortable: true
-};
+    filter: true,
+    resizable: true,
+    sortable: true
+}
 
 const Dashboard: React.FC<DashboardProps> = props => {
-  let gridApi: GridApi | undefined;
+    let gridApi: GridApi | undefined
 
-  const onGridReady = (params: GridReadyEvent) => {
-    gridApi = params.api;
-  };
-
-  const resizeGrid = () => {
-    if (gridApi) {
-      gridApi.sizeColumnsToFit();
+    const onGridReady = (params: GridReadyEvent) => {
+        gridApi = params.api
     }
-  };
 
-  const columnDefs = props.gradingSummary.cols.map(e => {
-    return {
-      headerName: startCase(e),
-      field: e
-    };
-  });
+    const resizeGrid = () => {
+        if (gridApi) {
+            gridApi.sizeColumnsToFit()
+        }
+    }
 
-  const content = (
-    <div className="Dashboard">
-      <div className="Grid ag-grid-parent ag-theme-balham">
-        <AgGridReact
-          domLayout={'autoHeight'}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColumnDefs}
-          onGridReady={onGridReady}
-          onGridSizeChanged={resizeGrid}
-          rowData={props.gradingSummary.rows}
-          rowHeight={30}
-          suppressCellSelection={true}
-          suppressMovableColumns={true}
-        />
-      </div>
-    </div>
-  );
+    const columnDefs = props.gradingSummary.cols.map(e => {
+        return {
+            headerName: startCase(e),
+            field: e
+        }
+    })
 
-  return (
-    <div>
-      <ContentDisplay display={content} loadContentDispatch={props.handleFetchGradingSummary} />
-    </div>
-  );
-};
+    const content = (
+        <div className="Dashboard">
+            <div className="Grid ag-grid-parent ag-theme-balham">
+                <AgGridReact
+                    domLayout={'autoHeight'}
+                    columnDefs={columnDefs}
+                    defaultColDef={defaultColumnDefs}
+                    onGridReady={onGridReady}
+                    onGridSizeChanged={resizeGrid}
+                    rowData={props.gradingSummary.rows}
+                    rowHeight={30}
+                    suppressCellSelection={true}
+                    suppressMovableColumns={true}
+                />
+            </div>
+        </div>
+    )
 
-export default Dashboard;
+    return (
+        <div>
+            <ContentDisplay
+                display={content}
+                loadContentDispatch={props.handleFetchGradingSummary}
+            />
+        </div>
+    )
+}
+
+export default Dashboard

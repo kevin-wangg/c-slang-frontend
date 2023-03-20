@@ -1,6 +1,6 @@
-import GameInputManager from '../input/GameInputManager';
-import GameLayerManager from '../layer/GameLayerManager';
-import GamePhaseManager from '../phase/GamePhaseManager';
+import GameInputManager from '../input/GameInputManager'
+import GameLayerManager from '../layer/GameLayerManager'
+import GamePhaseManager from '../phase/GamePhaseManager'
 
 /**
  * Encapsulate style of bitmap text.
@@ -11,23 +11,23 @@ import GamePhaseManager from '../phase/GamePhaseManager';
  * @prop {number} align - text alignment, from Phaser.GameObjects.BitmapText.ALIGN_*
  */
 export type BitmapFontStyle = {
-  key: string;
-  size: number;
-  align: number;
-};
+    key: string
+    size: number
+    align: number
+}
 
 /**
  * @typedef {string} ItemId - id associated with an item.
  * Item can be any of the following:
  * (Dialogue | ObjectProperty | BboxProperty | Character | Action | AwardProperty)
  */
-export type ItemId = string;
+export type ItemId = string
 
 /** @typedef {string} AssetKey - key associated with an asset */
-export type AssetKey = string;
+export type AssetKey = string
 
 /** @typedef {string} AssetPath - path associated with an asset */
-export type AssetPath = string;
+export type AssetPath = string
 
 /**
  * Encapsulate tracked interaction.
@@ -36,9 +36,9 @@ export type AssetPath = string;
  * @prop {string} interactionId id of interaction. Must be unique across all interactions.
  */
 export type TrackInteraction = {
-  isInteractive: boolean;
-  interactionId: string;
-};
+    isInteractive: boolean
+    interactionId: string
+}
 
 /**
  * Interface for classes that represents a UI.
@@ -47,8 +47,8 @@ export type TrackInteraction = {
  * @interface
  */
 export interface IGameUI {
-  activateUI: () => Promise<void> | void;
-  deactivateUI: () => Promise<void> | void;
+    activateUI: () => Promise<void> | void
+    deactivateUI: () => Promise<void> | void
 }
 
 /**
@@ -57,9 +57,9 @@ export interface IGameUI {
  * @enum {string}
  */
 export enum GamePosition {
-  Left = 'Left',
-  Middle = 'Middle',
-  Right = 'Right'
+    Left = 'Left',
+    Middle = 'Middle',
+    Right = 'Right'
 }
 
 /**
@@ -68,9 +68,9 @@ export enum GamePosition {
  * @enum {string}
  */
 export enum GameSize {
-  Small = 'Small',
-  Medium = 'Medium',
-  Large = 'Large'
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large'
 }
 
 /**
@@ -81,7 +81,7 @@ export enum GameSize {
  * @prop {number} oriX originX of the text
  * @prop {number} oriY originY of the text
  */
-export type TextConfig = { x: number; y: number; oriX: number; oriY: number };
+export type TextConfig = { x: number; y: number; oriX: number; oriY: number }
 
 /**
  * Interface for basic scene, which incorporates input, phaser, and layer manager.
@@ -91,10 +91,10 @@ export type TextConfig = { x: number; y: number; oriX: number; oriY: number };
  * @interface
  */
 export interface IBaseScene extends Phaser.Scene {
-  getLayerManager: () => GameLayerManager;
-  getInputManager: () => GameInputManager;
-  getPhaseManager: () => GamePhaseManager;
-  cleanUp: () => void;
+    getLayerManager: () => GameLayerManager
+    getInputManager: () => GameInputManager
+    getPhaseManager: () => GamePhaseManager
+    cleanUp: () => void
 }
 
 /**
@@ -103,5 +103,5 @@ export interface IBaseScene extends Phaser.Scene {
  * @interface
  */
 export interface ILayeredScene extends Phaser.Scene {
-  getLayerManager: () => GameLayerManager;
+    getLayerManager: () => GameLayerManager
 }

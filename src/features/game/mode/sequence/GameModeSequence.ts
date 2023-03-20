@@ -1,4 +1,4 @@
-import { IGameUI } from '../../commons/CommonTypes';
+import { IGameUI } from '../../commons/CommonTypes'
 
 /**
  * This is the phase that is active when none of
@@ -7,8 +7,8 @@ import { IGameUI } from '../../commons/CommonTypes';
  * It is used for dialogue/popups and notifications
  */
 class GameModeSequence implements IGameUI {
-  public activateUI() {}
-  public deactivateUI() {}
+    public activateUI() {}
+    public deactivateUI() {}
 }
 
-export default GameModeSequence;
+export default GameModeSequence

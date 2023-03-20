@@ -1,12 +1,12 @@
 export enum GamePhaseType {
-  Move = 'Move',
-  Explore = 'Explore',
-  Talk = 'Talk',
-  Menu = 'Menu',
-  EscapeMenu = 'EscapeMenu',
-  None = 'None',
-  Sequence = 'Sequence',
-  Dashboard = 'Dashboard'
+    Move = 'Move',
+    Explore = 'Explore',
+    Talk = 'Talk',
+    Menu = 'Menu',
+    EscapeMenu = 'EscapeMenu',
+    None = 'None',
+    Sequence = 'Sequence',
+    Dashboard = 'Dashboard'
 }
 
 /**
@@ -16,6 +16,6 @@ export enum GamePhaseType {
  * the stack before another phase is pushed on.
  */
 export enum GameTerminalPhaseType {
-  EscapeMenu = GamePhaseType.EscapeMenu,
-  Dashboard = GamePhaseType.Dashboard
+    EscapeMenu = GamePhaseType.EscapeMenu,
+    Dashboard = GamePhaseType.Dashboard
 }

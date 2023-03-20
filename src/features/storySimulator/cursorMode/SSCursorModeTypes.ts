@@ -1,4 +1,4 @@
 export enum CursorMode {
-  DrawBBox,
-  DragResizeObj
+    DrawBBox,
+    DragResizeObj
 }

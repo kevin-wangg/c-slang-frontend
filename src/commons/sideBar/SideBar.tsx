@@ -1,8 +1,8 @@
-import { Card, Icon, IconName } from '@blueprintjs/core';
-import classNames from 'classnames';
-import React from 'react';
+import { Card, Icon, IconName } from '@blueprintjs/core'
+import classNames from 'classnames'
+import React from 'react'
 
-import { SideContentType } from '../sideContent/SideContentTypes';
+import { SideContentType } from '../sideContent/SideContentTypes'
 
 /**
  * @property label The displayed name of the tab.
@@ -12,59 +12,63 @@ import { SideContentType } from '../sideContent/SideContentTypes';
  *              Omit if the tab should only be shown in the sidebar on the desktop view.
  */
 export type SideBarTab = {
-  label: string;
-  body: JSX.Element;
-  iconName: IconName;
-  id?: SideContentType;
-};
+    label: string
+    body: JSX.Element
+    iconName: IconName
+    id?: SideContentType
+}
 
 export type SideBarProps = {
-  tabs: SideBarTab[];
-  isExpanded: boolean;
-  expandSideBar: () => void;
-  collapseSideBar: () => void;
-};
+    tabs: SideBarTab[]
+    isExpanded: boolean
+    expandSideBar: () => void
+    collapseSideBar: () => void
+}
 
 const SideBar: React.FC<SideBarProps> = (props: SideBarProps) => {
-  const { tabs, isExpanded, expandSideBar, collapseSideBar } = props;
+    const { tabs, isExpanded, expandSideBar, collapseSideBar } = props
 
-  const [selectedTabIndex, setSelectedTabIndex] = React.useState<number>(0);
+    const [selectedTabIndex, setSelectedTabIndex] = React.useState<number>(0)
 
-  const handleTabSelection = (tabIndex: number) => {
-    if (selectedTabIndex === tabIndex) {
-      if (isExpanded) {
-        collapseSideBar();
-      } else {
-        expandSideBar();
-      }
-      return;
+    const handleTabSelection = (tabIndex: number) => {
+        if (selectedTabIndex === tabIndex) {
+            if (isExpanded) {
+                collapseSideBar()
+            } else {
+                expandSideBar()
+            }
+            return
+        }
+        setSelectedTabIndex(tabIndex)
+        expandSideBar()
     }
-    setSelectedTabIndex(tabIndex);
-    expandSideBar();
-  };
 
-  // Do not render the sidebar if there are no tabs.
-  if (tabs.length === 0) {
-    return <div className="sidebar-container" />;
-  }
+    // Do not render the sidebar if there are no tabs.
+    if (tabs.length === 0) {
+        return <div className="sidebar-container" />
+    }
 
-  return (
-    <div className="sidebar-container">
-      <div className="tab-container">
-        {tabs.map((tab, index) => (
-          <Card
-            key={index}
-            className={classNames('tab', { selected: isExpanded && selectedTabIndex === index })}
-            onClick={() => handleTabSelection(index)}
-          >
-            <Icon className="tab-icon" icon={tab.iconName} size={14} />
-            {tab.label}
-          </Card>
-        ))}
-      </div>
-      {selectedTabIndex !== null && <Card className="panel">{tabs[selectedTabIndex].body}</Card>}
-    </div>
-  );
-};
+    return (
+        <div className="sidebar-container">
+            <div className="tab-container">
+                {tabs.map((tab, index) => (
+                    <Card
+                        key={index}
+                        className={classNames('tab', {
+                            selected: isExpanded && selectedTabIndex === index
+                        })}
+                        onClick={() => handleTabSelection(index)}
+                    >
+                        <Icon className="tab-icon" icon={tab.iconName} size={14} />
+                        {tab.label}
+                    </Card>
+                ))}
+            </div>
+            {selectedTabIndex !== null && (
+                <Card className="panel">{tabs[selectedTabIndex].body}</Card>
+            )}
+        </div>
+    )
+}
 
-export default SideBar;
+export default SideBar

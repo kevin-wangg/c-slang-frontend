@@ -1,5 +1,5 @@
-import { ITreeNode } from '@blueprintjs/core';
-import _ from 'lodash';
+import { ITreeNode } from '@blueprintjs/core'
+import _ from 'lodash'
 
 /**
  * This function applies a function fn to every node in a blueprint core Tree
@@ -8,11 +8,11 @@ import _ from 'lodash';
  * @param fn Function to apply to every element in the tree
  */
 export function treeMap(nodes: ITreeNode[] | undefined, fn: (node: ITreeNode) => void) {
-  nodes &&
-    nodes.forEach(node => {
-      fn(node);
-      treeMap(node.childNodes, fn);
-    });
+    nodes &&
+        nodes.forEach(node => {
+            fn(node)
+            treeMap(node.childNodes, fn)
+        })
 }
 
 /**
@@ -30,29 +30,31 @@ export function treeMap(nodes: ITreeNode[] | undefined, fn: (node: ITreeNode) =>
  * @returns {ITreeNode[]} - a blueprint core tree parent nodes
  */
 export function assetPathsToTree(
-  assetPaths: string[],
-  iconRenderer: (pathName: string) => JSX.Element,
-  rootFolders: string[] = []
+    assetPaths: string[],
+    iconRenderer: (pathName: string) => JSX.Element,
+    rootFolders: string[] = []
 ): ITreeNode[] {
-  const assetObj = {};
-  assetPaths.forEach(assetPath => _.set(assetObj, assetPath.split('/'), 'FILE'));
-  rootFolders.forEach(folder => {
-    if (!assetObj[folder] || assetObj[folder] === 'FILE') {
-      assetObj[folder] = [];
-    }
-  });
+    const assetObj = {}
+    assetPaths.forEach(assetPath => _.set(assetObj, assetPath.split('/'), 'FILE'))
+    rootFolders.forEach(folder => {
+        if (!assetObj[folder] || assetObj[folder] === 'FILE') {
+            assetObj[folder] = []
+        }
+    })
 
-  function helper(parentFolders: string[], assetObj: object | Array<string>): ITreeNode[] {
-    return Object.keys(assetObj).map(file => {
-      const shortPath = '/' + parentFolders.join('/') + '/' + file;
-      return {
-        id: shortPath,
-        label: file,
-        secondaryLabel: iconRenderer(shortPath),
-        childNodes:
-          assetObj[file] === 'FILE' ? undefined : helper([...parentFolders, file], assetObj[file])
-      };
-    });
-  }
-  return helper([], assetObj);
+    function helper(parentFolders: string[], assetObj: object | Array<string>): ITreeNode[] {
+        return Object.keys(assetObj).map(file => {
+            const shortPath = '/' + parentFolders.join('/') + '/' + file
+            return {
+                id: shortPath,
+                label: file,
+                secondaryLabel: iconRenderer(shortPath),
+                childNodes:
+                    assetObj[file] === 'FILE'
+                        ? undefined
+                        : helper([...parentFolders, file], assetObj[file])
+            }
+        })
+    }
+    return helper([], assetObj)
 }

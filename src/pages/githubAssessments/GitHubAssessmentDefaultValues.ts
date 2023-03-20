@@ -1,7 +1,7 @@
 import { Chapter } from 'c-slang/dist/types';
 
-import { IMCQQuestion } from '../../commons/assessment/AssessmentTypes';
-import { MissionMetadata, TaskData } from '../../commons/githubAssessments/GitHubMissionTypes';
+import { IMCQQuestion } from '../../commons/assessment/AssessmentTypes'
+import { MissionMetadata, TaskData } from '../../commons/githubAssessments/GitHubMissionTypes'
 
 export const defaultMissionBriefing = `### Assignment Briefing (Click to Edit!)
 Welcome to Assignment Creator! This is where the Briefing for each assignment will appear.
@@ -34,7 +34,7 @@ It is also possible to embed images, like this:
 ![an embedded image](https://avatars.githubusercontent.com/u/35620705?s=400&u=32f72fd1d65a0d6877ad1d5870ffa327dda754f1&v=4)
 
 If you need a more detailed cheatsheet, please click [here](https://www.markdownguide.org/cheat-sheet/)!
-`;
+`
 
 export const defaultTaskDescription = `### Problem Description (Click to Edit!)
 Welcome to the Assignment Creator! This is where the problem description specific to each problem should be written.
@@ -67,34 +67,34 @@ It is also possible to embed images, like this:
 ![an embedded image](https://avatars.githubusercontent.com/u/35620705?s=400&u=32f72fd1d65a0d6877ad1d5870ffa327dda754f1&v=4)
 
 If you need a more detailed cheatsheet, please click [here](https://www.markdownguide.org/cheat-sheet/)!
-`;
+`
 
-export const defaultStarterCode = '// Your program here!\n';
+export const defaultStarterCode = '// Your program here!\n'
 
 export const defaultMissionMetadata = {
-  sourceVersion: Chapter.CALC
-} as MissionMetadata;
+    sourceVersion: Chapter.CALC
+} as MissionMetadata
 
 export const defaultTask = {
-  questionNumber: 0,
-  taskDescription: defaultTaskDescription,
-  starterCode: defaultStarterCode,
-  savedCode: defaultStarterCode,
-  testPrepend: '',
-  testPostpend: '',
-  testCases: []
-} as TaskData;
+    questionNumber: 0,
+    taskDescription: defaultTaskDescription,
+    starterCode: defaultStarterCode,
+    savedCode: defaultStarterCode,
+    testPrepend: '',
+    testPostpend: '',
+    testCases: []
+} as TaskData
 
 export const defaultMCQQuestion = {
-  answer: -1,
-  choices: [],
-  solution: -1,
-  type: 'mcq',
-  content: '',
-  grade: 0,
-  id: 0,
-  library: { chapter: Chapter.CALC, external: { name: 'NONE', symbols: [] }, globals: [] },
-  maxGrade: 0,
-  xp: 0,
-  maxXp: 0
-} as IMCQQuestion;
+    answer: -1,
+    choices: [],
+    solution: -1,
+    type: 'mcq',
+    content: '',
+    grade: 0,
+    id: 0,
+    library: { chapter: Chapter.CALC, external: { name: 'NONE', symbols: [] }, globals: [] },
+    maxGrade: 0,
+    xp: 0,
+    maxXp: 0
+} as IMCQQuestion

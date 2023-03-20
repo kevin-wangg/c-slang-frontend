@@ -1,38 +1,38 @@
-import { ItemId, TrackInteraction } from '../commons/CommonTypes';
-import { GameStateStorage } from '../state/GameStateTypes';
+import { ItemId, TrackInteraction } from '../commons/CommonTypes'
+import { GameStateStorage } from '../state/GameStateTypes'
 
 export enum GameActionType {
-  MoveCharacter = 'MoveCharacter',
-  UpdateCharacter = 'UpdateCharacter',
-  ObtainCollectible = 'ObtainCollectible',
-  CompleteObjective = 'CompleteObjective',
-  CompleteTask = 'CompleteTask',
-  ShowTask = 'ShowTask',
-  PreviewLocation = 'PreviewLocation',
-  AddItem = 'AddItem',
-  RemoveItem = 'RemoveItem',
-  ShowDialogue = 'ShowDialogue',
-  ChangeBackground = 'ChangeBackground',
-  StartAnimation = 'StartAnimation',
-  StopAnimation = 'StopAnimation',
-  RemoveLocationMode = 'RemoveLocationMode',
-  AddLocationMode = 'AddLocationMode',
-  AddPopup = 'AddPopup',
-  MakeObjectBlink = 'MakeObjectBlink',
-  MakeObjectGlow = 'MakeObjectGlow',
-  PlayBGM = 'PlayBGM',
-  PlaySFX = 'PlaySFX',
-  ShowObjectLayer = 'ShowObjectLayer',
-  NavigateToAssessment = 'NavigateToAssessment',
-  UpdateAssessmentStatus = 'UpdateAssessmentStatus',
-  Delay = 'Delay'
+    MoveCharacter = 'MoveCharacter',
+    UpdateCharacter = 'UpdateCharacter',
+    ObtainCollectible = 'ObtainCollectible',
+    CompleteObjective = 'CompleteObjective',
+    CompleteTask = 'CompleteTask',
+    ShowTask = 'ShowTask',
+    PreviewLocation = 'PreviewLocation',
+    AddItem = 'AddItem',
+    RemoveItem = 'RemoveItem',
+    ShowDialogue = 'ShowDialogue',
+    ChangeBackground = 'ChangeBackground',
+    StartAnimation = 'StartAnimation',
+    StopAnimation = 'StopAnimation',
+    RemoveLocationMode = 'RemoveLocationMode',
+    AddLocationMode = 'AddLocationMode',
+    AddPopup = 'AddPopup',
+    MakeObjectBlink = 'MakeObjectBlink',
+    MakeObjectGlow = 'MakeObjectGlow',
+    PlayBGM = 'PlayBGM',
+    PlaySFX = 'PlaySFX',
+    ShowObjectLayer = 'ShowObjectLayer',
+    NavigateToAssessment = 'NavigateToAssessment',
+    UpdateAssessmentStatus = 'UpdateAssessmentStatus',
+    Delay = 'Delay'
 }
 
 /**
  * Interface for entities which can contain actions, including locations, objects, etc.
  */
 export interface IGameActionable {
-  actionIds?: ItemId[];
+    actionIds?: ItemId[]
 }
 /**
  * Condition object which encapsulates data about an action condition,
@@ -45,10 +45,10 @@ export interface IGameActionable {
  * @prop {boolean} boolean - whether the condition needs to match "true" or "false" before it is satisfied
  */
 export type ActionCondition = {
-  state: GameStateStorage;
-  conditionParams: any;
-  boolean: boolean;
-};
+    state: GameStateStorage
+    conditionParams: any
+    boolean: boolean
+}
 
 /**
  * Action object which encapsulates data about an action,
@@ -62,8 +62,8 @@ export type ActionCondition = {
  * @prop {isRepeatable} boolean - whether or not the action can be performed again when it is triggerd.
  */
 export type GameAction = TrackInteraction & {
-  actionType: GameActionType;
-  actionParams: any;
-  actionConditions: ActionCondition[];
-  isRepeatable: boolean;
-};
+    actionType: GameActionType
+    actionParams: any
+    actionConditions: ActionCondition[]
+    isRepeatable: boolean
+}

@@ -1,16 +1,16 @@
-import { IGameActionable } from '../action/GameActionTypes';
-import { AssetKey, ItemId } from '../commons/CommonTypes';
-import { GameMode } from '../mode/GameModeTypes';
+import { IGameActionable } from '../action/GameActionTypes'
+import { AssetKey, ItemId } from '../commons/CommonTypes'
+import { GameMode } from '../mode/GameModeTypes'
 
 /**
  * @typedef {string} LocationId - id that identifies a location
  */
-export type LocationId = string;
+export type LocationId = string
 
 /**
  * @typedef {LocationId | ItemId} AnyId - a general id type for a location or any object id
  */
-export type AnyId = LocationId | ItemId;
+export type AnyId = LocationId | ItemId
 
 /**
  * @typedef {GameLocation} - encapsulates data about a location in a GameMap
@@ -25,28 +25,28 @@ export type AnyId = LocationId | ItemId;
  * @prop {AssetKey} bgmKey - the asset key of background music being played in that location
  */
 export type GameLocation = IGameActionable & {
-  id: LocationId;
-  name: string;
-  assetKey: AssetKey;
-  previewKey: AssetKey | null;
-  modes: Set<GameMode>;
-  navigation: Set<LocationId>;
-  talkTopics: Set<ItemId>;
-  objects: Set<ItemId>;
-  boundingBoxes: Set<ItemId>;
-  bgmKey: AssetKey;
-  characters: Set<ItemId>;
-};
+    id: LocationId
+    name: string
+    assetKey: AssetKey
+    previewKey: AssetKey | null
+    modes: Set<GameMode>
+    navigation: Set<LocationId>
+    talkTopics: Set<ItemId>
+    objects: Set<ItemId>
+    boundingBoxes: Set<ItemId>
+    bgmKey: AssetKey
+    characters: Set<ItemId>
+}
 
 export enum GameItemType {
-  navigation = 'navigation',
-  locations = 'locations',
-  talkTopics = 'talkTopics',
-  dialogues = 'dialogues',
-  objects = 'objects',
-  boundingBoxes = 'boundingBoxes',
-  characters = 'characters',
-  actions = 'actions',
-  bgmKey = 'bgmKey',
-  collectibles = 'collectibles'
+    navigation = 'navigation',
+    locations = 'locations',
+    talkTopics = 'talkTopics',
+    dialogues = 'dialogues',
+    objects = 'objects',
+    boundingBoxes = 'boundingBoxes',
+    characters = 'characters',
+    actions = 'actions',
+    bgmKey = 'bgmKey',
+    collectibles = 'collectibles'
 }
