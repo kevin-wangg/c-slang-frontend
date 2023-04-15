@@ -1,7 +1,7 @@
 import { Card, Classes, Pre } from '@blueprintjs/core';
 import { Ace } from 'ace-builds';
-import { parseError } from 'calc-slang';
-import { Chapter, Variant } from 'calc-slang/dist/types';
+import { parseError } from 'c-slang';
+import { Chapter, Variant } from 'c-slang/dist/types';
 import classNames from 'classnames';
 import * as React from 'react';
 import { HotKeys } from 'react-hotkeys';
@@ -68,7 +68,7 @@ export const Output: React.FC<OutputProps> = (props: OutputProps) => {
     case 'code':
       return (
         <Card>
-          <Pre className="code-output">{props.output.value}</Pre>
+          <Pre className="code-output">{JSON.parse(props.output.value).value}</Pre>
         </Card>
       );
     case 'running':
@@ -79,23 +79,24 @@ export const Output: React.FC<OutputProps> = (props: OutputProps) => {
       );
     case 'result':
       // We check if we are using Stepper, so we can process the REPL results properly
-      if (props.usingSubst && props.output.value instanceof Array) {
+      if (props.usingSubst && props.output.value.value instanceof Array) {
         return (
           <Card>
             <Pre className="log-output">Check out the Stepper tab!</Pre>
           </Card>
         );
-      } else if (props.output.consoleLogs.length === 0) {
+      } else if (JSON.parse(props.output.value).output.length === 0) {
+        console.log(props.output)
         return (
           <Card>
-            <Pre className="result-output">{props.output.value}</Pre>
+            <Pre className="result-output">{JSON.parse(props.output.value).value}</Pre>
           </Card>
         );
       } else {
         return (
           <Card>
-            <Pre className="log-output">{props.output.consoleLogs.join('\n')}</Pre>
-            <Pre className="result-output">{props.output.value}</Pre>
+            <Pre className="log-output">{JSON.parse(props.output.value).output.join('\n')}</Pre>
+            <Pre className="result-output">{JSON.parse(props.output.value).value}</Pre>
           </Card>
         );
       }

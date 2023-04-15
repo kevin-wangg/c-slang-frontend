@@ -3,10 +3,10 @@ import {
   findDeclaration,
   interrupt,
   runInContext
-} from 'calc-slang';
-import { InterruptedError } from 'calc-slang/dist/errors/errors';
-import { parse } from 'calc-slang/dist/parser/parser';
-import { Chapter, Variant } from 'calc-slang/dist/types';
+} from 'c-slang';
+import { InterruptedError } from 'c-slang/dist/errors/errors';
+import { parse } from 'c-slang/dist/parser/parser';
+import { Chapter, Variant } from 'c-slang/dist/types';
 import { random } from 'lodash';
 import Phaser from 'phaser';
 import { SagaIterator } from 'redux-saga';
