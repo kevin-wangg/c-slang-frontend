@@ -86,7 +86,6 @@ export const Output: React.FC<OutputProps> = (props: OutputProps) => {
           </Card>
         );
       } else if (JSON.parse(props.output.value).output.length === 0) {
-        console.log(props.output)
         return (
           <Card>
             <Pre className="result-output">{JSON.parse(props.output.value).value}</Pre>
