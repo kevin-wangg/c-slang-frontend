@@ -110,12 +110,12 @@ export interface SALanguage extends Language {
 }
 
 const variantDisplay: Map<Variant, string> = new Map([
-  [Variant.DEFAULT, 'calc']
+  [Variant.DEFAULT, 'c-slang']
 ]);
 
 
 export const styliseSublanguage = (chapter: Chapter, variant: Variant = Variant.DEFAULT) => {
-  return `Source \xa7${chapter}${
+  return `${
     variantDisplay.has(variant) ? ` ${variantDisplay.get(variant)}` : ''
   }`;
 };

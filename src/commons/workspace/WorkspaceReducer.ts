@@ -292,12 +292,12 @@ export const WorkspaceReducer: Reducer<WorkspaceManagerState> = (
         // New block of output.
         newOutput = state[workspaceLocation].output.concat({
           type: 'running',
-          consoleLogs: [...action.payload.logString]
+          consoleLogs: action.payload.logString
         });
       } else {
         const updatedLastOutput = {
           type: lastOutput.type,
-          consoleLogs: lastOutput.consoleLogs.concat(action.payload.logString)
+          consoleLogs: action.payload.logString
         };
         newOutput = state[workspaceLocation].output.slice(0, -1);
         newOutput.push(updatedLastOutput);
@@ -343,12 +343,12 @@ export const WorkspaceReducer: Reducer<WorkspaceManagerState> = (
       lastOutput = state[workspaceLocation].output.slice(-1)[0];
       if (lastOutput !== undefined && lastOutput.type === 'running') {
         newOutput = state[workspaceLocation].output.slice(0, -1).concat({
-          consoleLogs: lastOutput.consoleLogs,
+          consoleLogs: state[workspaceLocation].context.printStatements,
           ...newOutputEntry
         } as ResultOutput);
       } else {
         newOutput = state[workspaceLocation].output.concat({
-          consoleLogs: [],
+          consoleLogs: state[workspaceLocation].context.printStatements,
           ...newOutputEntry
         } as ResultOutput);
       }
@@ -407,13 +407,13 @@ export const WorkspaceReducer: Reducer<WorkspaceManagerState> = (
         newOutput = state[workspaceLocation].output.slice(0, -1).concat({
           type: action.payload.type,
           errors: action.payload.errors,
-          consoleLogs: lastOutput.consoleLogs
+          consoleLogs: state[workspaceLocation].context.printStatements,
         } as ErrorOutput);
       } else {
         newOutput = state[workspaceLocation].output.concat({
           type: action.payload.type,
           errors: action.payload.errors,
-          consoleLogs: []
+          consoleLogs: state[workspaceLocation].context.printStatements,
         } as ErrorOutput);
       }
       return {

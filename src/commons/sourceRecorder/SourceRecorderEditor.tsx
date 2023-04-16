@@ -234,12 +234,12 @@ class SourcecastEditor extends React.PureComponent<SourceRecorderEditorProps, {}
             fontSize={17}
             height="100%"
             highlightActiveLine={false}
-            mode="javascript"
+            mode="c_cpp"
             onChange={this.onChangeMethod}
             onCursorChange={this.onCursorChange}
             onSelectionChange={this.onSelectionChange}
             readOnly={this.props.isEditorReadonly}
-            theme="source"
+            theme="monokai"
             value={this.props.editorValue}
             width="100%"
             setOptions={{

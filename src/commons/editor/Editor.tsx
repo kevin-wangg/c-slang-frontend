@@ -283,7 +283,7 @@ const EditorBase = React.memo((props: EditorProps & LocalStateProps) => {
     height: '100%',
     highlightActiveLine: false,
     mode: getModeString(sourceChapter, sourceVariant, externalLibraryName),
-    theme: 'source',
+    theme: 'monokai',
     value: props.editorValue,
     width: '100%',
     setOptions: {
