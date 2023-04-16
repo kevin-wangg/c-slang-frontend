@@ -592,7 +592,7 @@ export function* evalCode(
   ) {
     yield* dumpDisplayBuffer(workspaceLocation);
     yield put(actions.evalInterpreterError(context.errors, workspaceLocation));
-
+    yield put(actions.handleConsoleLog(workspaceLocation, result.context.printStatements));
     // we need to parse again, but preserve the errors in context
     const oldErrors = context.errors;
     context.errors = [];
@@ -609,6 +609,7 @@ export function* evalCode(
   yield* dumpDisplayBuffer(workspaceLocation);
   // Do not write interpreter output to REPL, if executing chunks (e.g. prepend/postpend blocks)
   if (actionType !== EVAL_SILENT) {
+    yield put(actions.handleConsoleLog(workspaceLocation, result.context.printStatements));
     yield put(actions.evalInterpreterSuccess(result.value, workspaceLocation));
   }
 

@@ -68,7 +68,7 @@ export const Output: React.FC<OutputProps> = (props: OutputProps) => {
     case 'code':
       return (
         <Card>
-          <Pre className="code-output">{JSON.parse(props.output.value).value}</Pre>
+          <Pre className="code-output">{props.output.value}</Pre>
         </Card>
       );
     case 'running':
@@ -85,17 +85,17 @@ export const Output: React.FC<OutputProps> = (props: OutputProps) => {
             <Pre className="log-output">Check out the Stepper tab!</Pre>
           </Card>
         );
-      } else if (JSON.parse(props.output.value).output.length === 0) {
+      } else if (props.output.consoleLogs.length === 0) {
         return (
           <Card>
-            <Pre className="result-output">{JSON.parse(props.output.value).value}</Pre>
+            <Pre className="result-output">{props.output.value}</Pre>
           </Card>
         );
       } else {
         return (
           <Card>
-            <Pre className="log-output">{JSON.parse(props.output.value).output.join('\n')}</Pre>
-            <Pre className="result-output">{JSON.parse(props.output.value).value}</Pre>
+            <Pre className="log-output">{props.output.consoleLogs.join('\n')}</Pre>
+            <Pre className="result-output">{props.output.value}</Pre> 
           </Card>
         );
       }
