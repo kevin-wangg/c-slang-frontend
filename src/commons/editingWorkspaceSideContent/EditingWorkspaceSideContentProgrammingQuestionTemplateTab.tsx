@@ -148,9 +148,9 @@ const ProgrammingQuestionTemplateTab: React.FC<QuestionEditorProps> = props => {
           }}
           fontSize={14}
           highlightActiveLine={false}
-          mode="javascript"
+          mode="c_cpp"
           onChange={setTemplateValue}
-          theme="source"
+          theme="monokai"
           value={value}
           width="100%"
         />

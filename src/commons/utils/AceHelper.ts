@@ -28,5 +28,5 @@ export const selectMode = (chapter: Chapter, variant: Variant, library: string) 
 };
 
 export const getModeString = (chapter: Chapter, variant: Variant, library: string) => {
-  return `source${chapter}${variant}${library}`;
+  return `c_cpp`;
 };

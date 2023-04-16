@@ -95,7 +95,7 @@ export const ReplInput: React.FC<ReplInputProps> = (props: ReplInputProps) => {
       <AceEditor
         className="repl-react-ace react-ace"
         mode={getModeString(props.sourceChapter, props.sourceVariant, props.externalLibrary)}
-        theme="source"
+        theme="monokai"
         height="1px"
         width="100%"
         value={props.replValue}
