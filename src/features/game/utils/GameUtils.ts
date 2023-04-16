@@ -1,6 +1,6 @@
-import { store } from 'src/pages/createStore';
+import { store } from 'src/pages/createStore'
 
-import { Constants } from '../commons/CommonConstants';
+import { Constants } from '../commons/CommonConstants'
 
 /**
  * When called with await in an async function,
@@ -11,7 +11,7 @@ import { Constants } from '../commons/CommonConstants';
  * @returns {Promise} promise which resolves in ms milliseconds.
  */
 export function sleep(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 /**
@@ -28,12 +28,12 @@ export function sleep(ms: number) {
  * @returns {Map<K, R>} new Map with mapped values
  */
 export function mapValues<K, V, R>(map: Map<K, V>, fn: (value: V, key?: K) => R): Map<K, R> {
-  const newMap = new Map<K, R>();
-  map.forEach((value: V, key: K) => {
-    const result: R = fn(value, key);
-    newMap.set(key, result);
-  });
-  return newMap;
+    const newMap = new Map<K, R>()
+    map.forEach((value: V, key: K) => {
+        const result: R = fn(value, key)
+        newMap.set(key, result)
+    })
+    return newMap
 }
 
 /**
@@ -46,7 +46,7 @@ export function mapValues<K, V, R>(map: Map<K, V>, fn: (value: V, key?: K) => R)
  * @returns {number} number which is capped based on boundaries
  */
 export function limitNumber(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max);
+    return Math.min(Math.max(value, min), max)
 }
 
 /**
@@ -57,10 +57,10 @@ export function limitNumber(value: number, min: number, max: number) {
  * @returns {string} new path to file including full s3 link
  */
 export function toS3Path(fileName: string, courseCoded = false) {
-  if (fileName.startsWith('/')) {
-    fileName = fileName.substr(1);
-  }
-  return Constants.assetsFolder + (courseCoded ? assetsPrefix() + fileName : fileName);
+    if (fileName.startsWith('/')) {
+        fileName = fileName.substr(1)
+    }
+    return Constants.assetsFolder + (courseCoded ? assetsPrefix() + fileName : fileName)
 }
 
 /**
@@ -71,10 +71,10 @@ export function toS3Path(fileName: string, courseCoded = false) {
  * @throws {Error} if object is undefined
  */
 export function mandatory<T>(object: T, errorMsg?: string) {
-  if (object === undefined) {
-    throw new Error(errorMsg || 'Object not found');
-  }
-  return (object as T)!;
+    if (object === undefined) {
+        throw new Error(errorMsg || 'Object not found')
+    }
+    return (object as T)!
 }
 
 /**
@@ -84,11 +84,11 @@ export function mandatory<T>(object: T, errorMsg?: string) {
  * @returns the final element of the array
  */
 export function lastElement<T>(array: T[]): T {
-  if (array.length === 0) {
-    throw new Error('Array is empty');
-  }
-  return array[array.length - 1];
+    if (array.length === 0) {
+        throw new Error('Array is empty')
+    }
+    return array[array.length - 1]
 }
 
-export const courseId = () => store.getState().session.courseId;
-export const assetsPrefix = () => store.getState().session.assetsPrefix || '';
+export const courseId = () => store.getState().session.courseId
+export const assetsPrefix = () => store.getState().session.assetsPrefix || ''

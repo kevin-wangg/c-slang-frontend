@@ -1,16 +1,16 @@
-import { ActionCondition, IGameActionable } from '../action/GameActionTypes';
-import { SpeakerDetail } from '../character/GameCharacterTypes';
+import { ActionCondition, IGameActionable } from '../action/GameActionTypes'
+import { SpeakerDetail } from '../character/GameCharacterTypes'
 
 /**
  * @typedef {string} PartName - the label for one part/section of the dialogue
  * Parts can be used to play one part of the dialogue after another.
  */
-export type PartName = string;
+export type PartName = string
 
 /**
  * @typedef {string} Choice - choice option that is shown on a prompt button
  */
-export type Choice = string;
+export type Choice = string
 
 /**
  * @typedef DialogueLine - a line in the dialogue which can be augmented with
@@ -22,15 +22,15 @@ export type Choice = string;
  * based on user choice
  */
 export type DialogueLine = IGameActionable & {
-  line: string;
-  speakerDetail?: SpeakerDetail | null;
-  goto?: {
-    conditions: ActionCondition[];
-    part: PartName;
-    altPart: PartName | null;
-  };
-  prompt?: Prompt;
-};
+    line: string
+    speakerDetail?: SpeakerDetail | null
+    goto?: {
+        conditions: ActionCondition[]
+        part: PartName
+        altPart: PartName | null
+    }
+    prompt?: Prompt
+}
 
 /**
  * @typedef DialogueStorageLine - dialogue line containing only the speaker name and the line itself.
@@ -39,14 +39,14 @@ export type DialogueLine = IGameActionable & {
  * @param line - the spoken text for this line
  */
 export type DialogueStorageLine = {
-  speaker: string;
-  line: string;
-};
+    speaker: string
+    line: string
+}
 
 export type Dialogue = {
-  title: string;
-  content: DialogueObject;
-};
+    title: string
+    content: DialogueObject
+}
 
 /**
  * @typedef Prompt - a prompt pop-up with a title and choices
@@ -55,8 +55,8 @@ export type Dialogue = {
  * gotos
  */
 export type Prompt = {
-  promptTitle: string;
-  choices: [Choice, PartName][];
-};
+    promptTitle: string
+    choices: [Choice, PartName][]
+}
 
-export type DialogueObject = Map<PartName, DialogueLine[]>;
+export type DialogueObject = Map<PartName, DialogueLine[]>

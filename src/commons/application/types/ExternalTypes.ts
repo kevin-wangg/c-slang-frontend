@@ -3,21 +3,21 @@
  * @see Library the definition of a Library at AssessmentTypes.ts in an assessment.
  */
 export type External = {
-  key: number;
-  name: ExternalLibraryName;
-  symbols: string[];
-};
+    key: number
+    name: ExternalLibraryName
+    symbols: string[]
+}
 
 export enum ExternalLibraryName {
-  NONE = 'NONE',
-  SOUNDS = 'SOUNDS',
-  EV3 = 'EV3' // Remote execution device library
+    NONE = 'NONE',
+    SOUNDS = 'SOUNDS',
+    EV3 = 'EV3' // Remote execution device library
 }
 
 export type ExternalLibrary = {
-  name: ExternalLibraryName;
-  symbols: string[];
-};
+    name: ExternalLibraryName
+    symbols: string[]
+}
 
 /**
  * Defines which external libraries are available for usage, and what
@@ -25,8 +25,8 @@ export type ExternalLibrary = {
  */
 
 const libEntries: Array<[ExternalLibraryName, string[]]> = [
-  [ExternalLibraryName.NONE, []],
-  [ExternalLibraryName.SOUNDS, []]
-];
+    [ExternalLibraryName.NONE, []],
+    [ExternalLibraryName.SOUNDS, []]
+]
 
-export const externalLibraries: Map<string, string[]> = new Map(libEntries);
+export const externalLibraries: Map<string, string[]> = new Map(libEntries)

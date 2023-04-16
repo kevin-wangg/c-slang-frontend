@@ -1,5 +1,5 @@
-import { IGameActionable } from '../action/GameActionTypes';
-import { TrackInteraction } from '../commons/CommonTypes';
+import { IGameActionable } from '../action/GameActionTypes'
+import { TrackInteraction } from '../commons/CommonTypes'
 
 /**
  * Information on a bounding box, a clickable rectangle area
@@ -10,9 +10,9 @@ import { TrackInteraction } from '../commons/CommonTypes';
  * @prop {number} height - height of bounding box
  */
 export type BBoxProperty = TrackInteraction &
-  IGameActionable & {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  };
+    IGameActionable & {
+        x: number
+        y: number
+        width: number
+        height: number
+    }

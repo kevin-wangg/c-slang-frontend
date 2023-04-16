@@ -1,40 +1,40 @@
-import { IconName } from '@blueprintjs/core';
+import { IconName } from '@blueprintjs/core'
 
-import { DebuggerContext } from '../workspace/WorkspaceTypes';
+import { DebuggerContext } from '../workspace/WorkspaceTypes'
 
-export const NOTIFY_PROGRAM_EVALUATED = 'NOTIFY_PROGRAM_EVALUATED';
+export const NOTIFY_PROGRAM_EVALUATED = 'NOTIFY_PROGRAM_EVALUATED'
 
 export enum SideContentType {
-  autograder = 'autograder',
-  briefing = 'briefing',
-  contestVoting = 'contest_voting',
-  contestLeaderboard = 'contest_leaderboard',
-  dataVisualizer = 'data_visualizer',
-  editorGrading = 'editor_grading',
-  editorAutograder = 'editor_autograder',
-  editorBriefing = 'editor_briefing',
-  editorGlobalDeployment = 'editor_global_deployment',
-  editorGlobalGraderDeployment = 'editor_global_grader_deployment',
-  editorLocalDeployment = 'editor_local_deployment',
-  editorLocalGraderDeployment = 'editor_local_grader_deployment',
-  editorManageQuestion = 'editor_manage_question',
-  editorQuestionOverview = 'editor_question_overview',
-  editorQuestionTemplate = 'editor_question_template',
-  envVisualizer = 'env_visualizer',
-  files = 'files',
-  grading = 'grading',
-  introduction = 'introduction',
-  module = 'module',
-  questionOverview = 'question_overview',
-  remoteExecution = 'remote_execution',
-  missionMetadata = 'mission_metadata',
-  mobileEditor = 'mobile_editor',
-  mobileEditorRun = 'mobile_editor_run',
-  sourcereel = 'sourcereel',
-  substVisualizer = 'subst_visualiser',
-  testcases = 'testcases',
-  toneMatrix = 'tone_matrix',
-  htmlDisplay = 'html_display'
+    autograder = 'autograder',
+    briefing = 'briefing',
+    contestVoting = 'contest_voting',
+    contestLeaderboard = 'contest_leaderboard',
+    dataVisualizer = 'data_visualizer',
+    editorGrading = 'editor_grading',
+    editorAutograder = 'editor_autograder',
+    editorBriefing = 'editor_briefing',
+    editorGlobalDeployment = 'editor_global_deployment',
+    editorGlobalGraderDeployment = 'editor_global_grader_deployment',
+    editorLocalDeployment = 'editor_local_deployment',
+    editorLocalGraderDeployment = 'editor_local_grader_deployment',
+    editorManageQuestion = 'editor_manage_question',
+    editorQuestionOverview = 'editor_question_overview',
+    editorQuestionTemplate = 'editor_question_template',
+    envVisualizer = 'env_visualizer',
+    files = 'files',
+    grading = 'grading',
+    introduction = 'introduction',
+    module = 'module',
+    questionOverview = 'question_overview',
+    remoteExecution = 'remote_execution',
+    missionMetadata = 'mission_metadata',
+    mobileEditor = 'mobile_editor',
+    mobileEditorRun = 'mobile_editor_run',
+    sourcereel = 'sourcereel',
+    substVisualizer = 'subst_visualiser',
+    testcases = 'testcases',
+    toneMatrix = 'tone_matrix',
+    htmlDisplay = 'html_display'
 }
 
 /**
@@ -54,12 +54,12 @@ export enum SideContentType {
  * tab will be greyed out and cannot be selected. Default value: false.
  */
 export type SideContentTab = {
-  label: string;
-  iconName: IconName;
-  body: JSX.Element | null;
-  id?: SideContentType;
-  disabled?: boolean;
-};
+    label: string
+    iconName: IconName
+    body: JSX.Element | null
+    id?: SideContentType
+    disabled?: boolean
+}
 
 /**
  * Used for modules that dynamically spawn when imported
@@ -76,8 +76,8 @@ export type SideContentTab = {
  * side content tab should appear
  */
 export type ModuleSideContent = {
-  label: string;
-  iconName: IconName;
-  body: (props: any) => JSX.Element;
-  toSpawn: (context: DebuggerContext) => boolean;
-};
+    label: string
+    iconName: IconName
+    body: (props: any) => JSX.Element
+    toSpawn: (context: DebuggerContext) => boolean
+}

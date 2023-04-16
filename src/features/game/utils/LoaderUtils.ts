@@ -1,4 +1,4 @@
-import { AssetKey, AssetPath } from 'src/features/game/commons/CommonTypes';
+import { AssetKey, AssetPath } from 'src/features/game/commons/CommonTypes'
 
 /**
  * The functions below loads assets, and and only resolves
@@ -19,16 +19,16 @@ import { AssetKey, AssetPath } from 'src/features/game/commons/CommonTypes';
  * @returns {Promise} promise that resolves when image is loaded.
  */
 export const loadImage = (scene: Phaser.Scene, assetKey: AssetKey, assetPath: AssetPath) =>
-  new Promise<AssetKey>(resolve => {
-    if (scene.textures.get(assetKey).key !== '__MISSING') {
-      resolve(assetKey);
-    } else {
-      scene.load.image(assetKey, assetPath);
-      scene.load.once(`filecomplete-image-${assetKey}`, resolve);
-      scene.load.once(`loaderror`, resolve);
-      scene.load.start();
-    }
-  });
+    new Promise<AssetKey>(resolve => {
+        if (scene.textures.get(assetKey).key !== '__MISSING') {
+            resolve(assetKey)
+        } else {
+            scene.load.image(assetKey, assetPath)
+            scene.load.once(`filecomplete-image-${assetKey}`, resolve)
+            scene.load.once(`loaderror`, resolve)
+            scene.load.start()
+        }
+    })
 
 /**
  * Waits for a text (with assetkey, assetpath) to load in scene
@@ -39,15 +39,15 @@ export const loadImage = (scene: Phaser.Scene, assetKey: AssetKey, assetPath: As
  * @returns {Promise} promise that resolves when text is loaded.
  */
 export const loadText = (scene: Phaser.Scene, assetKey: AssetKey, assetPath: AssetPath) =>
-  new Promise<AssetKey>(resolve => {
-    if (scene.cache.text.exists(assetKey)) {
-      resolve(assetKey);
-    } else {
-      scene.load.text(assetKey, assetPath);
-      scene.load.once(`filecomplete-text-${assetKey}`, resolve);
-      scene.load.start();
-    }
-  });
+    new Promise<AssetKey>(resolve => {
+        if (scene.cache.text.exists(assetKey)) {
+            resolve(assetKey)
+        } else {
+            scene.load.text(assetKey, assetPath)
+            scene.load.once(`filecomplete-text-${assetKey}`, resolve)
+            scene.load.start()
+        }
+    })
 
 /**
  * Waits for a sound (with assetkey, assetpath) to load in scene
@@ -58,14 +58,14 @@ export const loadText = (scene: Phaser.Scene, assetKey: AssetKey, assetPath: Ass
  * @returns {Promise} promise that resolves when sound is loaded.
  */
 export const loadSound = (scene: Phaser.Scene, assetKey: AssetKey, assetPath: AssetPath) =>
-  new Promise<AssetKey>(resolve => {
-    if (scene.sound.get(assetKey) !== null) {
-      resolve(assetKey);
-    } else {
-      scene.load.audio(assetKey, assetPath).on('filecomplete', resolve);
-      scene.load.start();
-    }
-  });
+    new Promise<AssetKey>(resolve => {
+        if (scene.sound.get(assetKey) !== null) {
+            resolve(assetKey)
+        } else {
+            scene.load.audio(assetKey, assetPath).on('filecomplete', resolve)
+            scene.load.start()
+        }
+    })
 
 /**
  * Waits for an spritesheet (with assetkey, assetpath, and config) to load in scene
@@ -77,18 +77,18 @@ export const loadSound = (scene: Phaser.Scene, assetKey: AssetKey, assetPath: As
  * @returns {Promise} promise that resolves when spritesheet is loaded.
  */
 export const loadSpritesheet = (
-  scene: Phaser.Scene,
-  assetKey: AssetKey,
-  assetPath: AssetPath,
-  config: any
+    scene: Phaser.Scene,
+    assetKey: AssetKey,
+    assetPath: AssetPath,
+    config: any
 ) =>
-  new Promise<AssetKey>(resolve => {
-    if (scene.textures.get(assetKey).key !== '__MISSING') {
-      resolve(assetKey);
-    } else {
-      scene.load.spritesheet(assetKey, assetPath, config);
-      scene.load.once(`filecomplete-spritesheet-${assetKey}`, resolve);
-      scene.load.once(`loaderror`, resolve);
-      scene.load.start();
-    }
-  });
+    new Promise<AssetKey>(resolve => {
+        if (scene.textures.get(assetKey).key !== '__MISSING') {
+            resolve(assetKey)
+        } else {
+            scene.load.spritesheet(assetKey, assetPath, config)
+            scene.load.once(`filecomplete-spritesheet-${assetKey}`, resolve)
+            scene.load.once(`loaderror`, resolve)
+            scene.load.start()
+        }
+    })

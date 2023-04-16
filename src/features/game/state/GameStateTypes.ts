@@ -1,18 +1,18 @@
-import { ItemId } from '../commons/CommonTypes';
+import { ItemId } from '../commons/CommonTypes'
 
 export enum GameStateStorage {
-  UserState = 'UserState',
-  ChecklistState = 'ChecklistState',
-  TasklistState = 'TasklistState'
+    UserState = 'UserState',
+    ChecklistState = 'ChecklistState',
+    TasklistState = 'TasklistState'
 }
 
 /**
  * Type of user state list.
  */
 export enum UserStateType {
-  collectibles = 'collectibles',
-  assessments = 'assessments',
-  achievements = 'achievements'
+    collectibles = 'collectibles',
+    assessments = 'assessments',
+    achievements = 'achievements'
 }
 
 /**
@@ -20,7 +20,7 @@ export enum UserStateType {
  * to the current scene
  */
 export interface StateObserver {
-  handleAdd: (itemId: ItemId) => boolean;
-  handleDelete: (itemId: ItemId) => boolean;
-  handleMutate: (itemId: ItemId) => boolean;
+    handleAdd: (itemId: ItemId) => boolean
+    handleDelete: (itemId: ItemId) => boolean
+    handleMutate: (itemId: ItemId) => boolean
 }

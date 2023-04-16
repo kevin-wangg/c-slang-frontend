@@ -1,6 +1,6 @@
-import { IGameActionable } from '../action/GameActionTypes';
-import { AssetKey, ItemId, TrackInteraction } from '../commons/CommonTypes';
-import GlowingImage from '../effects/GlowingObject';
+import { IGameActionable } from '../action/GameActionTypes'
+import { AssetKey, ItemId, TrackInteraction } from '../commons/CommonTypes'
+import GlowingImage from '../effects/GlowingObject'
 
 /**
  * @typedef {ObjectProperty} - encapsulates data about an object in a location
@@ -14,17 +14,17 @@ import GlowingImage from '../effects/GlowingObject';
  * @prop {number} height - display height of the object if not its original size
  */
 export type ObjectProperty = TrackInteraction &
-  IGameActionable & {
-    assetKey: AssetKey;
-    x: number;
-    y: number;
-    width?: number;
-    height?: number;
-  };
+    IGameActionable & {
+        assetKey: AssetKey
+        x: number
+        y: number
+        width?: number
+        height?: number
+    }
 
 export type ObjectLayerProps = {
-  cursor?: string;
-};
+    cursor?: string
+}
 
 /**
  * @typedef {ActivatableSprite} - data that represents the object on screen
@@ -34,8 +34,8 @@ export type ObjectLayerProps = {
  * @prop {ItemId} interactionId - The interaction id for the sprite
  */
 export type ActivatableSprite = {
-  sprite: GlowingImage | Phaser.GameObjects.Rectangle;
-  clickArea: Phaser.GameObjects.Image | Phaser.GameObjects.Rectangle;
-  actionIds?: ItemId[];
-  interactionId: ItemId;
-};
+    sprite: GlowingImage | Phaser.GameObjects.Rectangle
+    clickArea: Phaser.GameObjects.Image | Phaser.GameObjects.Rectangle
+    actionIds?: ItemId[]
+    interactionId: ItemId
+}

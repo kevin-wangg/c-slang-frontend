@@ -6,8 +6,8 @@
  * @param visible - indication of whether this task is currently visible to the user
  */
 export type TaskDetail = {
-  taskId: string;
-  title: string;
-  description: string;
-  visible: boolean;
-};
+    taskId: string
+    title: string
+    description: string
+    visible: boolean
+}

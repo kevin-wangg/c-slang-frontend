@@ -1,10 +1,10 @@
-import { Action, Reducer } from 'redux';
+import { Action, Reducer } from 'redux'
 
-import { ApplicationState, defaultApplication } from './ApplicationTypes';
+import { ApplicationState, defaultApplication } from './ApplicationTypes'
 
 export const ApplicationReducer: Reducer<ApplicationState> = (
-  state = defaultApplication,
-  action: Action
+    state = defaultApplication,
+    action: Action
 ) => {
-  return state;
-};
+    return state
+}

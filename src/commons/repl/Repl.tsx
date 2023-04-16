@@ -6,62 +6,63 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { HotKeys } from 'react-hotkeys';
 
-import { InterpreterOutput } from '../application/ApplicationTypes';
-import { ExternalLibraryName } from '../application/types/ExternalTypes';
-import { ReplInput } from './ReplInput';
-import { OutputProps } from './ReplTypes';
+import { InterpreterOutput } from '../application/ApplicationTypes'
+import { ExternalLibraryName } from '../application/types/ExternalTypes'
+import { ReplInput } from './ReplInput'
+import { OutputProps } from './ReplTypes'
 
-export type ReplProps = DispatchProps & StateProps & OwnProps;
+export type ReplProps = DispatchProps & StateProps & OwnProps
 
 type StateProps = {
-  output: InterpreterOutput[];
-  replValue: string;
-  hidden?: boolean;
-  inputHidden?: boolean;
-  usingSubst?: boolean;
-  sourceChapter: Chapter;
-  sourceVariant: Variant;
-  externalLibrary: ExternalLibraryName;
-  disableScrolling?: boolean;
-};
+    output: InterpreterOutput[]
+    replValue: string
+    hidden?: boolean
+    inputHidden?: boolean
+    usingSubst?: boolean
+    sourceChapter: Chapter
+    sourceVariant: Variant
+    externalLibrary: ExternalLibraryName
+    disableScrolling?: boolean
+}
 
 type DispatchProps = {
-  handleBrowseHistoryDown: () => void;
-  handleBrowseHistoryUp: () => void;
-  handleReplEval: () => void;
-  handleReplValueChange: (newCode: string) => void;
-  onFocus?: (editor: Ace.Editor) => void;
-  onBlur?: () => void;
-};
+    handleBrowseHistoryDown: () => void
+    handleBrowseHistoryUp: () => void
+    handleReplEval: () => void
+    handleReplValueChange: (newCode: string) => void
+    onFocus?: (editor: Ace.Editor) => void
+    onBlur?: () => void
+}
 
 type OwnProps = {
-  replButtons: Array<JSX.Element | null>;
-};
+    replButtons: Array<JSX.Element | null>
+}
 
 const Repl: React.FC<ReplProps> = (props: ReplProps) => {
-  const cards = props.output.map((slice, index) => (
-    <Output
-      output={slice}
-      key={index}
-      usingSubst={props.usingSubst ?? false}
-    />
-  ));
-  return (
-    <div className="Repl" style={{ display: props.hidden ? 'none' : undefined }}>
-      <div className="repl-output-parent">
-        {cards}
-        {!props.inputHidden && (
-          <HotKeys
-            className={classNames('repl-input-parent', 'row', Classes.CARD, Classes.ELEVATION_0)}
-            handlers={handlers}
-          >
-            <ReplInput {...props} />
-          </HotKeys>
-        )}
-      </div>
-    </div>
-  );
-};
+    const cards = props.output.map((slice, index) => (
+        <Output output={slice} key={index} usingSubst={props.usingSubst ?? false} />
+    ))
+    return (
+        <div className="Repl" style={{ display: props.hidden ? 'none' : undefined }}>
+            <div className="repl-output-parent">
+                {cards}
+                {!props.inputHidden && (
+                    <HotKeys
+                        className={classNames(
+                            'repl-input-parent',
+                            'row',
+                            Classes.CARD,
+                            Classes.ELEVATION_0
+                        )}
+                        handlers={handlers}
+                    >
+                        <ReplInput {...props} />
+                    </HotKeys>
+                )}
+            </div>
+        </div>
+    )
+}
 
 export const Output: React.FC<OutputProps> = (props: OutputProps) => {
   switch (props.output.type) {
@@ -122,7 +123,7 @@ export const Output: React.FC<OutputProps> = (props: OutputProps) => {
 
 /* Override handler, so does not trigger when focus is in editor */
 const handlers = {
-  goGreen: () => {}
-};
+    goGreen: () => {}
+}
 
-export default Repl;
+export default Repl

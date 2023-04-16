@@ -7,11 +7,11 @@
  * @returns {Phaser.Types.Tweens.TweenDataConfig} - the tween config for the scroll in animation
  */
 export const scrollEntry = (targets: Phaser.GameObjects.GameObject[], duration = 500) => ({
-  scaleY: 1,
-  targets,
-  duration,
-  ease: 'Power1'
-});
+    scaleY: 1,
+    targets,
+    duration,
+    ease: 'Power1'
+})
 
 /**
  * Generates a tween configuration for making objects close like a scroll,
@@ -22,8 +22,8 @@ export const scrollEntry = (targets: Phaser.GameObjects.GameObject[], duration =
  * @returns {Phaser.Types.Tweens.TweenDataConfig} - the tween config for the scroll in animation
  */
 export const scrollExit = (targets: Phaser.GameObjects.GameObject[], duration = 500) => ({
-  scaleY: 0,
-  targets,
-  duration,
-  ease: 'Power1'
-});
+    scaleY: 0,
+    targets,
+    duration,
+    ease: 'Power1'
+})

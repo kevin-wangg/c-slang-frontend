@@ -1,6 +1,6 @@
-import { InterpreterOutput } from '../application/ApplicationTypes';
+import { InterpreterOutput } from '../application/ApplicationTypes'
 
 export type OutputProps = {
-  output: InterpreterOutput;
-  usingSubst?: boolean;
-};
+    output: InterpreterOutput
+    usingSubst?: boolean
+}

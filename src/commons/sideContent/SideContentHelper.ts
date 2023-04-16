@@ -1,38 +1,38 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import { DebuggerContext, WorkspaceLocation } from '../workspace/WorkspaceTypes';
-import { ModuleSideContent, SideContentTab, SideContentType } from './SideContentTypes';
+import { DebuggerContext, WorkspaceLocation } from '../workspace/WorkspaceTypes'
+import { ModuleSideContent, SideContentTab, SideContentType } from './SideContentTypes'
 
 const currentlyActiveTabsLabel: Map<WorkspaceLocation, string[]> = new Map<
-  WorkspaceLocation,
-  string[]
->();
+    WorkspaceLocation,
+    string[]
+>()
 
 /**
  * Returns an array of SideContentTabs to be spawned
  * @param debuggerContext - DebuggerContext object from redux store
  */
 export const getDynamicTabs = (debuggerContext: DebuggerContext): SideContentTab[] => {
-  const tabsToSpawn = getModuleTabs(debuggerContext).filter(tab => tab.toSpawn(debuggerContext));
-  // Convert ModuleSideContent to SideContentTab.
-  const spawnedTabs: SideContentTab[] = [
-    ...tabsToSpawn.map(tab => ({
-      ...tab,
-      body: tab.body(debuggerContext),
-      // set tab.id as module
-      id: SideContentType.module
-    }))
-  ];
-  // only set if debuggerContext.workspaceLocation is not undefined
-  if (debuggerContext.workspaceLocation) {
-    currentlyActiveTabsLabel.set(
-      debuggerContext.workspaceLocation,
-      spawnedTabs.map(tab => tab.label)
-    );
-  }
-  return spawnedTabs;
-};
+    const tabsToSpawn = getModuleTabs(debuggerContext).filter(tab => tab.toSpawn(debuggerContext))
+    // Convert ModuleSideContent to SideContentTab.
+    const spawnedTabs: SideContentTab[] = [
+        ...tabsToSpawn.map(tab => ({
+            ...tab,
+            body: tab.body(debuggerContext),
+            // set tab.id as module
+            id: SideContentType.module
+        }))
+    ]
+    // only set if debuggerContext.workspaceLocation is not undefined
+    if (debuggerContext.workspaceLocation) {
+        currentlyActiveTabsLabel.set(
+            debuggerContext.workspaceLocation,
+            spawnedTabs.map(tab => tab.label)
+        )
+    }
+    return spawnedTabs
+}
 
 /**
  * Extracts included Modules' side contents from DebuggerContext.
@@ -44,16 +44,16 @@ export const getModuleTabs = (debuggerContext: DebuggerContext): ModuleSideConte
     return [];
   }
 
-  // Get module contexts
-  const rawModuleContexts = debuggerContext.context.moduleContexts;
-  if (rawModuleContexts == null) {
-    return [];
-  }
+    // Get module contexts
+    const rawModuleContexts = debuggerContext.context.moduleContexts
+    if (rawModuleContexts == null) {
+        return []
+    }
 
-  // Pass React into functions
-  const moduleTabs: ModuleSideContent[] = Object.values(rawModuleContexts).flatMap(
-    context => context.tabs?.map((tab: any) => tab(React, ReactDOM)) ?? []
-  );
+    // Pass React into functions
+    const moduleTabs: ModuleSideContent[] = Object.values(rawModuleContexts).flatMap(
+        context => context.tabs?.map((tab: any) => tab(React, ReactDOM)) ?? []
+    )
 
-  return moduleTabs;
-};
+    return moduleTabs
+}

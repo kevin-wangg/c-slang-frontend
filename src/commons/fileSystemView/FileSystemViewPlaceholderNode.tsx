@@ -1,41 +1,41 @@
-import React from 'react';
+import React from 'react'
 
 export type FileSystemViewPlaceholderNodeProps = {
-  processFileName: (fileName: string) => void;
-  removePlaceholder: () => void;
-};
+    processFileName: (fileName: string) => void
+    removePlaceholder: () => void
+}
 
 const FileSystemViewPlaceholderNode: React.FC<FileSystemViewPlaceholderNodeProps> = (
-  props: FileSystemViewPlaceholderNodeProps
+    props: FileSystemViewPlaceholderNodeProps
 ) => {
-  const { processFileName, removePlaceholder } = props;
+    const { processFileName, removePlaceholder } = props
 
-  const [fileName, setFileName] = React.useState<string>('');
+    const [fileName, setFileName] = React.useState<string>('')
 
-  const handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setFileName(e.target.value);
-  const handleInputOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      processFileName(fileName);
-      removePlaceholder();
-    } else if (e.key === 'Escape') {
-      handleInputOnBlur();
+    const handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+        setFileName(e.target.value)
+    const handleInputOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            processFileName(fileName)
+            removePlaceholder()
+        } else if (e.key === 'Escape') {
+            handleInputOnBlur()
+        }
     }
-  };
-  const handleInputOnBlur = () => removePlaceholder();
+    const handleInputOnBlur = () => removePlaceholder()
 
-  return (
-    <input
-      type="text"
-      autoFocus
-      spellCheck={false}
-      className="file-system-view-input"
-      value={fileName}
-      onChange={handleInputOnChange}
-      onKeyDown={handleInputOnKeyDown}
-      onBlur={handleInputOnBlur}
-    />
-  );
-};
+    return (
+        <input
+            type="text"
+            autoFocus
+            spellCheck={false}
+            className="file-system-view-input"
+            value={fileName}
+            onChange={handleInputOnChange}
+            onKeyDown={handleInputOnKeyDown}
+            onBlur={handleInputOnBlur}
+        />
+    )
+}
 
-export default FileSystemViewPlaceholderNode;
+export default FileSystemViewPlaceholderNode

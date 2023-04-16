@@ -1,4 +1,4 @@
-import { Chapter, Language, SourceError, Variant } from 'c-slang/dist/types';
+import { Chapter, Language, SourceError, Variant } from 'wlp3/dist/types';
 
 import { AcademyState } from '../../features/academy/AcademyTypes';
 import { AchievementState } from '../../features/achievement/AchievementTypes';
@@ -109,20 +109,15 @@ export interface SALanguage extends Language {
   displayName: string;
 }
 
-const variantDisplay: Map<Variant, string> = new Map([
-  [Variant.DEFAULT, 'calc']
-]);
-
+const variantDisplay: Map<Variant, string> = new Map([[Variant.DEFAULT, 'wlp3']]);
 
 export const styliseSublanguage = (chapter: Chapter, variant: Variant = Variant.DEFAULT) => {
-  return `Source \xa7${chapter}${
+  return `${
     variantDisplay.has(variant) ? ` ${variantDisplay.get(variant)}` : ''
   }`;
 };
 
-export const sublanguages: Language[] = [
-  { chapter: Chapter.CALC, variant: Variant.DEFAULT }
-];
+export const sublanguages: Language[] = [{ chapter: Chapter.CALC, variant: Variant.DEFAULT }];
 
 export const sourceLanguages: SALanguage[] = sublanguages.map(sublang => {
   return {
@@ -139,8 +134,8 @@ export const variantLanguages = sourceLanguages.filter(
   sublang => sublang.variant !== Variant.DEFAULT
 );
 
-export const isSourceLanguage = (chapter: Chapter) =>
-  [Chapter.CALC].includes(chapter);
+// TODO(dora): clean this up
+export const isSourceLanguage = (chapter: Chapter) => [Chapter.CALC].includes(chapter);
 
 const currentEnvironment = (): ApplicationEnvironment => {
   switch (process.env.NODE_ENV) {
@@ -189,11 +184,7 @@ export const defaultEditorValue = '1+1';
  */
 export const createDefaultWorkspace = (workspaceLocation: WorkspaceLocation): WorkspaceState => ({
   autogradingResults: [],
-  context: createContext<WorkspaceLocation>(
-    [],
-    workspaceLocation,
-    Constants.defaultSourceVariant
-  ),
+  context: createContext<WorkspaceLocation>([], workspaceLocation, Constants.defaultSourceVariant),
   activeEditorTabIndex: 0,
   editorTabs: [
     {

@@ -10,89 +10,89 @@ import { Library } from '../assessment/AssessmentTypes';
 import { Position } from '../editor/EditorTypes';
 import { NOTIFY_PROGRAM_EVALUATED } from '../sideContent/SideContentTypes';
 import {
-  ADD_HTML_CONSOLE_ERROR,
-  BEGIN_CLEAR_CONTEXT,
-  BROWSE_REPL_HISTORY_DOWN,
-  BROWSE_REPL_HISTORY_UP,
-  CHANGE_EXEC_TIME,
-  CHANGE_EXTERNAL_LIBRARY,
-  CHANGE_SIDE_CONTENT_HEIGHT,
-  CHANGE_STEP_LIMIT,
-  CHANGE_SUBLANGUAGE,
-  CHAPTER_SELECT,
-  CLEAR_REPL_INPUT,
-  CLEAR_REPL_OUTPUT,
-  CLEAR_REPL_OUTPUT_LAST,
-  EditorTabState,
-  END_CLEAR_CONTEXT,
-  EVAL_EDITOR,
-  EVAL_EDITOR_AND_TESTCASES,
-  EVAL_REPL,
-  EVAL_TESTCASE,
-  MOVE_CURSOR,
-  NAV_DECLARATION,
-  PLAYGROUND_EXTERNAL_SELECT,
-  PROMPT_AUTOCOMPLETE,
-  RESET_TESTCASE,
-  RESET_WORKSPACE,
-  SEND_REPL_INPUT_TO_OUTPUT,
-  TOGGLE_EDITOR_AUTORUN,
-  TOGGLE_USING_SUBST,
-  UPDATE_ACTIVE_EDITOR_TAB,
-  UPDATE_CURRENT_ASSESSMENT_ID,
-  UPDATE_CURRENT_SUBMISSION_ID,
-  UPDATE_EDITOR_BREAKPOINTS,
-  UPDATE_EDITOR_VALUE,
-  UPDATE_HAS_UNSAVED_CHANGES,
-  UPDATE_REPL_VALUE,
-  UPDATE_SUBLANGUAGE,
-  UPDATE_WORKSPACE,
-  WorkspaceLocation,
-  WorkspaceState
-} from './WorkspaceTypes';
+    ADD_HTML_CONSOLE_ERROR,
+    BEGIN_CLEAR_CONTEXT,
+    BROWSE_REPL_HISTORY_DOWN,
+    BROWSE_REPL_HISTORY_UP,
+    CHANGE_EXEC_TIME,
+    CHANGE_EXTERNAL_LIBRARY,
+    CHANGE_SIDE_CONTENT_HEIGHT,
+    CHANGE_STEP_LIMIT,
+    CHANGE_SUBLANGUAGE,
+    CHAPTER_SELECT,
+    CLEAR_REPL_INPUT,
+    CLEAR_REPL_OUTPUT,
+    CLEAR_REPL_OUTPUT_LAST,
+    EditorTabState,
+    END_CLEAR_CONTEXT,
+    EVAL_EDITOR,
+    EVAL_EDITOR_AND_TESTCASES,
+    EVAL_REPL,
+    EVAL_TESTCASE,
+    MOVE_CURSOR,
+    NAV_DECLARATION,
+    PLAYGROUND_EXTERNAL_SELECT,
+    PROMPT_AUTOCOMPLETE,
+    RESET_TESTCASE,
+    RESET_WORKSPACE,
+    SEND_REPL_INPUT_TO_OUTPUT,
+    TOGGLE_EDITOR_AUTORUN,
+    TOGGLE_USING_SUBST,
+    UPDATE_ACTIVE_EDITOR_TAB,
+    UPDATE_CURRENT_ASSESSMENT_ID,
+    UPDATE_CURRENT_SUBMISSION_ID,
+    UPDATE_EDITOR_BREAKPOINTS,
+    UPDATE_EDITOR_VALUE,
+    UPDATE_HAS_UNSAVED_CHANGES,
+    UPDATE_REPL_VALUE,
+    UPDATE_SUBLANGUAGE,
+    UPDATE_WORKSPACE,
+    WorkspaceLocation,
+    WorkspaceState
+} from './WorkspaceTypes'
 
 export const browseReplHistoryDown = (workspaceLocation: WorkspaceLocation) =>
-  action(BROWSE_REPL_HISTORY_DOWN, { workspaceLocation });
+    action(BROWSE_REPL_HISTORY_DOWN, { workspaceLocation })
 
 export const browseReplHistoryUp = (workspaceLocation: WorkspaceLocation) =>
-  action(BROWSE_REPL_HISTORY_UP, { workspaceLocation });
+    action(BROWSE_REPL_HISTORY_UP, { workspaceLocation })
 
 export const changeExternalLibrary = (newExternal: string, workspaceLocation: WorkspaceLocation) =>
-  action(CHANGE_EXTERNAL_LIBRARY, { newExternal, workspaceLocation });
+    action(CHANGE_EXTERNAL_LIBRARY, { newExternal, workspaceLocation })
 
 export const changeExecTime = (execTime: number, workspaceLocation: WorkspaceLocation) =>
-  action(CHANGE_EXEC_TIME, { execTime, workspaceLocation });
+    action(CHANGE_EXEC_TIME, { execTime, workspaceLocation })
 
 export const changeSideContentHeight = (height: number, workspaceLocation: WorkspaceLocation) =>
-  action(CHANGE_SIDE_CONTENT_HEIGHT, { height, workspaceLocation });
+    action(CHANGE_SIDE_CONTENT_HEIGHT, { height, workspaceLocation })
 
 export const changeStepLimit = (stepLimit: number, workspaceLocation: WorkspaceLocation) =>
-  action(CHANGE_STEP_LIMIT, { stepLimit, workspaceLocation });
+    action(CHANGE_STEP_LIMIT, { stepLimit, workspaceLocation })
 
 export const chapterSelect = (
-  chapter: Chapter,
-  variant: Variant,
-  workspaceLocation: WorkspaceLocation
+    chapter: Chapter,
+    variant: Variant,
+    workspaceLocation: WorkspaceLocation
 ) =>
-  action(CHAPTER_SELECT, {
-    chapter,
-    variant,
-    workspaceLocation
-  });
+    action(CHAPTER_SELECT, {
+        chapter,
+        variant,
+        workspaceLocation
+    })
 
 export const externalLibrarySelect = (
-  externalLibraryName: ExternalLibraryName,
-  workspaceLocation: WorkspaceLocation,
-  initialise?: boolean
+    externalLibraryName: ExternalLibraryName,
+    workspaceLocation: WorkspaceLocation,
+    initialise?: boolean
 ) =>
-  action(PLAYGROUND_EXTERNAL_SELECT, {
-    externalLibraryName,
-    workspaceLocation,
-    initialise: initialise || false
-  });
+    action(PLAYGROUND_EXTERNAL_SELECT, {
+        externalLibraryName,
+        workspaceLocation,
+        initialise: initialise || false
+    })
 
 export const toggleEditorAutorun = (workspaceLocation: WorkspaceLocation) =>
-  action(TOGGLE_EDITOR_AUTORUN, { workspaceLocation });
+    action(TOGGLE_EDITOR_AUTORUN, { workspaceLocation })
 
 /**
  * Starts the process to clear the c-slang Context
@@ -108,24 +108,24 @@ export const toggleEditorAutorun = (workspaceLocation: WorkspaceLocation) =>
  * @see Library in assessmentShape.ts
  */
 export const beginClearContext = (
-  workspaceLocation: WorkspaceLocation,
-  library: Library,
-  shouldInitLibrary: boolean
+    workspaceLocation: WorkspaceLocation,
+    library: Library,
+    shouldInitLibrary: boolean
 ) =>
-  action(BEGIN_CLEAR_CONTEXT, {
-    library,
-    workspaceLocation,
-    shouldInitLibrary
-  });
+    action(BEGIN_CLEAR_CONTEXT, {
+        library,
+        workspaceLocation,
+        shouldInitLibrary
+    })
 
 export const clearReplInput = (workspaceLocation: WorkspaceLocation) =>
-  action(CLEAR_REPL_INPUT, { workspaceLocation });
+    action(CLEAR_REPL_INPUT, { workspaceLocation })
 
 export const clearReplOutput = (workspaceLocation: WorkspaceLocation) =>
-  action(CLEAR_REPL_OUTPUT, { workspaceLocation });
+    action(CLEAR_REPL_OUTPUT, { workspaceLocation })
 
 export const clearReplOutputLast = (workspaceLocation: WorkspaceLocation) =>
-  action(CLEAR_REPL_OUTPUT_LAST, { workspaceLocation });
+    action(CLEAR_REPL_OUTPUT_LAST, { workspaceLocation })
 
 /**
  * Finishes the process to clear the c-slang Context
@@ -140,60 +140,59 @@ export const clearReplOutputLast = (workspaceLocation: WorkspaceLocation) =>
  * @see Library in assessmentShape.ts
  */
 export const endClearContext = (library: Library, workspaceLocation: WorkspaceLocation) =>
-  action(END_CLEAR_CONTEXT, {
-    library,
-    workspaceLocation
-  });
+    action(END_CLEAR_CONTEXT, {
+        library,
+        workspaceLocation
+    })
 
 export const evalEditor = (workspaceLocation: WorkspaceLocation) =>
-  action(EVAL_EDITOR, { workspaceLocation });
+    action(EVAL_EDITOR, { workspaceLocation })
 
-export const evalRepl = (workspaceLocation: WorkspaceLocation) => 
-  action(EVAL_REPL, { workspaceLocation });
-  
+export const evalRepl = (workspaceLocation: WorkspaceLocation) =>
+    action(EVAL_REPL, { workspaceLocation })
 
 export const evalTestcase = (workspaceLocation: WorkspaceLocation, testcaseId: number) =>
-  action(EVAL_TESTCASE, { workspaceLocation, testcaseId });
+    action(EVAL_TESTCASE, { workspaceLocation, testcaseId })
 
 export const runAllTestcases = (workspaceLocation: WorkspaceLocation) =>
-  action(EVAL_EDITOR_AND_TESTCASES, { workspaceLocation });
+    action(EVAL_EDITOR_AND_TESTCASES, { workspaceLocation })
 
 export const updateActiveEditorTab = (
-  workspaceLocation: WorkspaceLocation,
-  activeEditorTabOptions?: Partial<EditorTabState>
-) => action(UPDATE_ACTIVE_EDITOR_TAB, { workspaceLocation, activeEditorTabOptions });
+    workspaceLocation: WorkspaceLocation,
+    activeEditorTabOptions?: Partial<EditorTabState>
+) => action(UPDATE_ACTIVE_EDITOR_TAB, { workspaceLocation, activeEditorTabOptions })
 
 export const updateEditorValue = (newEditorValue: string, workspaceLocation: WorkspaceLocation) =>
-  action(UPDATE_EDITOR_VALUE, { newEditorValue, workspaceLocation });
+    action(UPDATE_EDITOR_VALUE, { newEditorValue, workspaceLocation })
 
 export const setEditorBreakpoint = (breakpoints: string[], workspaceLocation: WorkspaceLocation) =>
-  action(UPDATE_EDITOR_BREAKPOINTS, { breakpoints, workspaceLocation });
+    action(UPDATE_EDITOR_BREAKPOINTS, { breakpoints, workspaceLocation })
 
 export const highlightEditorLine = (
-  highlightedLines: number[],
-  workspaceLocation: WorkspaceLocation
-) => action(HIGHLIGHT_LINE, { highlightedLines, workspaceLocation });
+    highlightedLines: number[],
+    workspaceLocation: WorkspaceLocation
+) => action(HIGHLIGHT_LINE, { highlightedLines, workspaceLocation })
 
 export const updateReplValue = (newReplValue: string, workspaceLocation: WorkspaceLocation) =>
-  action(UPDATE_REPL_VALUE, { newReplValue, workspaceLocation });
+    action(UPDATE_REPL_VALUE, { newReplValue, workspaceLocation })
 
 export const sendReplInputToOutput = (newOutput: string, workspaceLocation: WorkspaceLocation) =>
-  action(SEND_REPL_INPUT_TO_OUTPUT, {
-    type: 'code',
-    workspaceLocation,
-    value: newOutput
-  });
+    action(SEND_REPL_INPUT_TO_OUTPUT, {
+        type: 'code',
+        workspaceLocation,
+        value: newOutput
+    })
 
 export const resetTestcase = (workspaceLocation: WorkspaceLocation, index: number) =>
-  action(RESET_TESTCASE, { workspaceLocation, index });
+    action(RESET_TESTCASE, { workspaceLocation, index })
 
 export const navigateToDeclaration = (
-  workspaceLocation: WorkspaceLocation,
-  cursorPosition: Position
-) => action(NAV_DECLARATION, { workspaceLocation, cursorPosition });
+    workspaceLocation: WorkspaceLocation,
+    cursorPosition: Position
+) => action(NAV_DECLARATION, { workspaceLocation, cursorPosition })
 
 export const moveCursor = (workspaceLocation: WorkspaceLocation, cursorPosition: Position) =>
-  action(MOVE_CURSOR, { workspaceLocation, cursorPosition });
+    action(MOVE_CURSOR, { workspaceLocation, cursorPosition })
 
 /**
  * Resets a workspace to its default properties.
@@ -205,87 +204,87 @@ export const moveCursor = (workspaceLocation: WorkspaceLocation, cursorPosition:
  *   editorValue.
  */
 export const resetWorkspace = (
-  workspaceLocation: WorkspaceLocation,
-  workspaceOptions?: Partial<WorkspaceState>
+    workspaceLocation: WorkspaceLocation,
+    workspaceOptions?: Partial<WorkspaceState>
 ) =>
-  action(RESET_WORKSPACE, {
-    workspaceLocation,
-    workspaceOptions
-  });
+    action(RESET_WORKSPACE, {
+        workspaceLocation,
+        workspaceOptions
+    })
 
 export const updateWorkspace = (
-  workspaceLocation: WorkspaceLocation,
-  workspaceOptions?: Partial<WorkspaceState>
+    workspaceLocation: WorkspaceLocation,
+    workspaceOptions?: Partial<WorkspaceState>
 ) =>
-  action(UPDATE_WORKSPACE, {
-    workspaceLocation,
-    workspaceOptions
-  });
+    action(UPDATE_WORKSPACE, {
+        workspaceLocation,
+        workspaceOptions
+    })
 
 export const setIsEditorReadonly = (
-  workspaceLocation: WorkspaceLocation,
-  isEditorReadonly: boolean
+    workspaceLocation: WorkspaceLocation,
+    isEditorReadonly: boolean
 ) =>
-  action(SET_IS_EDITOR_READONLY, {
-    workspaceLocation,
-    isEditorReadonly: isEditorReadonly
-  });
+    action(SET_IS_EDITOR_READONLY, {
+        workspaceLocation,
+        isEditorReadonly: isEditorReadonly
+    })
 
 export const updateCurrentAssessmentId = (assessmentId: number, questionId: number) =>
-  action(UPDATE_CURRENT_ASSESSMENT_ID, {
-    assessmentId,
-    questionId
-  });
+    action(UPDATE_CURRENT_ASSESSMENT_ID, {
+        assessmentId,
+        questionId
+    })
 
 export const updateCurrentSubmissionId = (submissionId: number, questionId: number) =>
-  action(UPDATE_CURRENT_SUBMISSION_ID, {
-    submissionId,
-    questionId
-  });
+    action(UPDATE_CURRENT_SUBMISSION_ID, {
+        submissionId,
+        questionId
+    })
 
 export const updateHasUnsavedChanges = (
-  workspaceLocation: WorkspaceLocation,
-  hasUnsavedChanges: boolean
+    workspaceLocation: WorkspaceLocation,
+    hasUnsavedChanges: boolean
 ) =>
-  action(UPDATE_HAS_UNSAVED_CHANGES, {
-    workspaceLocation,
-    hasUnsavedChanges
-  });
+    action(UPDATE_HAS_UNSAVED_CHANGES, {
+        workspaceLocation,
+        hasUnsavedChanges
+    })
 
-export const changeSublanguage = (sublang: SALanguage) => action(CHANGE_SUBLANGUAGE, { sublang });
+export const changeSublanguage = (sublang: SALanguage) => action(CHANGE_SUBLANGUAGE, { sublang })
 
-export const updateSublanguage = (sublang: SALanguage) => action(UPDATE_SUBLANGUAGE, { sublang });
+export const updateSublanguage = (sublang: SALanguage) => action(UPDATE_SUBLANGUAGE, { sublang })
 
 export const promptAutocomplete = (
-  workspaceLocation: WorkspaceLocation,
-  row: number,
-  column: number,
-  callback: any // TODO: define a type for this
+    workspaceLocation: WorkspaceLocation,
+    row: number,
+    column: number,
+    callback: any // TODO: define a type for this
 ) =>
-  action(PROMPT_AUTOCOMPLETE, {
-    workspaceLocation,
-    row,
-    column,
-    callback
-  });
+    action(PROMPT_AUTOCOMPLETE, {
+        workspaceLocation,
+        row,
+        column,
+        callback
+    })
 
 export const notifyProgramEvaluated = (
-  result: any,
-  lastDebuggerResult: any,
-  code: string,
-  context: Context,
-  workspaceLocation?: WorkspaceLocation
+    result: any,
+    lastDebuggerResult: any,
+    code: string,
+    context: Context,
+    workspaceLocation?: WorkspaceLocation
 ) =>
-  action(NOTIFY_PROGRAM_EVALUATED, {
-    result,
-    lastDebuggerResult,
-    code,
-    context,
-    workspaceLocation
-  });
+    action(NOTIFY_PROGRAM_EVALUATED, {
+        result,
+        lastDebuggerResult,
+        code,
+        context,
+        workspaceLocation
+    })
 
 export const toggleUsingSubst = (usingSubst: boolean, workspaceLocation: WorkspaceLocation) =>
-  action(TOGGLE_USING_SUBST, { usingSubst, workspaceLocation });
+    action(TOGGLE_USING_SUBST, { usingSubst, workspaceLocation })
 
 export const addHtmlConsoleError = (errorMsg: string, workspaceLocation: WorkspaceLocation) =>
-  action(ADD_HTML_CONSOLE_ERROR, { errorMsg, workspaceLocation });
+    action(ADD_HTML_CONSOLE_ERROR, { errorMsg, workspaceLocation })

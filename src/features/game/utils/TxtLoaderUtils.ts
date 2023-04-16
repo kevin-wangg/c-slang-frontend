@@ -1,7 +1,7 @@
-import TextAssets, { MockTextAssets, toTxtPath } from '../assets/TextAssets';
-import Parser from '../parser/Parser';
-import SourceAcademyGame from '../SourceAcademyGame';
-import { loadText } from './LoaderUtils';
+import TextAssets, { MockTextAssets, toTxtPath } from '../assets/TextAssets'
+import Parser from '../parser/Parser'
+import SourceAcademyGame from '../SourceAcademyGame'
+import { loadText } from './LoaderUtils'
 
 /**
  * Starts a new checkpoint with the given chapter number
@@ -13,34 +13,36 @@ import { loadText } from './LoaderUtils';
  * @param checkpointNum checkpoint number
  */
 export async function callGameManagerOnTxtLoad(
-  continueGame: boolean,
-  chapterNum: number,
-  checkpointNum: number
+    continueGame: boolean,
+    chapterNum: number,
+    checkpointNum: number
 ) {
-  const textAssets = SourceAcademyGame.getInstance().getIsUsingMock() ? MockTextAssets : TextAssets;
-  const scene = SourceAcademyGame.getInstance().getCurrentSceneRef();
-  const gameChapters = SourceAcademyGame.getInstance().getGameChapters();
-  const filename = gameChapters[chapterNum].filenames[checkpointNum];
-  if (!filename) {
-    return;
-  }
+    const textAssets = SourceAcademyGame.getInstance().getIsUsingMock()
+        ? MockTextAssets
+        : TextAssets
+    const scene = SourceAcademyGame.getInstance().getCurrentSceneRef()
+    const gameChapters = SourceAcademyGame.getInstance().getGameChapters()
+    const filename = gameChapters[chapterNum].filenames[checkpointNum]
+    if (!filename) {
+        return
+    }
 
-  await loadText(scene, filename, filename);
-  await loadText(scene, textAssets.defaultCheckpoint.key, textAssets.defaultCheckpoint.path);
+    await loadText(scene, filename, filename)
+    await loadText(scene, textAssets.defaultCheckpoint.key, textAssets.defaultCheckpoint.path)
 
-  const text = scene.cache.text.get(filename);
-  const defaultCheckpointText = scene.cache.text.get(textAssets.defaultCheckpoint.key);
+    const text = scene.cache.text.get(filename)
+    const defaultCheckpointText = scene.cache.text.get(textAssets.defaultCheckpoint.key)
 
-  Parser.parse(defaultCheckpointText);
-  Parser.parse(text, true);
-  const gameCheckpoint = Parser.checkpoint;
+    Parser.parse(defaultCheckpointText)
+    Parser.parse(text, true)
+    const gameCheckpoint = Parser.checkpoint
 
-  scene.scene.start('GameManager', {
-    gameCheckpoint,
-    continueGame,
-    chapterNum,
-    checkpointNum
-  });
+    scene.scene.start('GameManager', {
+        gameCheckpoint,
+        continueGame,
+        chapterNum,
+        checkpointNum
+    })
 }
 
 /**
@@ -48,27 +50,27 @@ export async function callGameManagerOnTxtLoad(
  * the chapter simulator stack
  */
 export async function callGameManagerForSim() {
-  const scene = SourceAcademyGame.getInstance().getCurrentSceneRef();
-  const checkpointFilenames = SourceAcademyGame.getInstance().getSSChapterSimFilenames();
-  if (!checkpointFilenames.length) {
-    scene.scene.start('StorySimulatorMenu');
-    return;
-  }
-  const filename = checkpointFilenames.pop() as string;
-  await loadText(scene, filename, toTxtPath(filename));
-  await loadText(scene, TextAssets.defaultCheckpoint.key, TextAssets.defaultCheckpoint.path);
+    const scene = SourceAcademyGame.getInstance().getCurrentSceneRef()
+    const checkpointFilenames = SourceAcademyGame.getInstance().getSSChapterSimFilenames()
+    if (!checkpointFilenames.length) {
+        scene.scene.start('StorySimulatorMenu')
+        return
+    }
+    const filename = checkpointFilenames.pop() as string
+    await loadText(scene, filename, toTxtPath(filename))
+    await loadText(scene, TextAssets.defaultCheckpoint.key, TextAssets.defaultCheckpoint.path)
 
-  const text = scene.cache.text.get(filename);
-  const defaultCheckpointText = scene.cache.text.get(TextAssets.defaultCheckpoint.key);
+    const text = scene.cache.text.get(filename)
+    const defaultCheckpointText = scene.cache.text.get(TextAssets.defaultCheckpoint.key)
 
-  Parser.parse(defaultCheckpointText);
-  Parser.parse(text, true);
-  const gameCheckpoint = Parser.checkpoint;
+    Parser.parse(defaultCheckpointText)
+    Parser.parse(text, true)
+    const gameCheckpoint = Parser.checkpoint
 
-  scene.scene.start('GameManager', {
-    gameCheckpoint,
-    chapterNum: -1,
-    checkpointNum: -1
-  });
-  return true;
+    scene.scene.start('GameManager', {
+        gameCheckpoint,
+        chapterNum: -1,
+        checkpointNum: -1
+    })
+    return true
 }

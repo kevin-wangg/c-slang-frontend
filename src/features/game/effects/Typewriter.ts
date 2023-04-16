@@ -9,11 +9,11 @@
  *                                     each letter's appearance
  */
 type TypewriterProps = {
-  x?: number;
-  y?: number;
-  textStyle?: Phaser.Types.GameObjects.Text.TextStyle;
-  typeWriterInterval?: number;
-};
+    x?: number
+    y?: number
+    textStyle?: Phaser.Types.GameObjects.Text.TextStyle
+    typeWriterInterval?: number
+}
 
 /**
  * Text sprite manager to produce typewriter effect
@@ -22,37 +22,37 @@ type TypewriterProps = {
  * @param typeWriterProps - properties to describe the appearance and animation of the typewriter
  */
 export function Typewriter(
-  scene: Phaser.Scene,
-  { x = 0, y = 0, textStyle = {}, typeWriterInterval = 1 }: TypewriterProps
+    scene: Phaser.Scene,
+    { x = 0, y = 0, textStyle = {}, typeWriterInterval = 1 }: TypewriterProps
 ) {
-  const textSprite = new Phaser.GameObjects.Text(scene, x, y, '', textStyle);
+    const textSprite = new Phaser.GameObjects.Text(scene, x, y, '', textStyle)
 
-  let line = '';
-  let charPointer = 0;
-  let typeWriting: NodeJS.Timeout;
+    let line = ''
+    let charPointer = 0
+    let typeWriting: NodeJS.Timeout
 
-  const clearTyping = () => {
-    typeWriting && clearInterval(typeWriting);
-  };
+    const clearTyping = () => {
+        typeWriting && clearInterval(typeWriting)
+    }
 
-  /* Reset line and type out */
-  const changeLine = (message: string) => {
-    if (!message) return;
-    line = message;
+    /* Reset line and type out */
+    const changeLine = (message: string) => {
+        if (!message) return
+        line = message
 
-    textSprite.text = '';
-    charPointer = 0;
+        textSprite.text = ''
+        charPointer = 0
 
-    clearTyping();
-    typeWriting = setInterval(() => {
-      textSprite.text += line[charPointer++];
-      if (charPointer === line.length) {
-        clearInterval(typeWriting);
-      }
-    }, typeWriterInterval);
-  };
+        clearTyping()
+        typeWriting = setInterval(() => {
+            textSprite.text += line[charPointer++]
+            if (charPointer === line.length) {
+                clearInterval(typeWriting)
+            }
+        }, typeWriterInterval)
+    }
 
-  return { container: textSprite, changeLine, clearTyping };
+    return { container: textSprite, changeLine, clearTyping }
 }
 
-export default Typewriter;
+export default Typewriter

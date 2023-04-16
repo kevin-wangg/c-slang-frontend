@@ -1,7 +1,7 @@
-import { WorkspaceState } from '../../commons/workspace/WorkspaceTypes';
+import { WorkspaceState } from '../../commons/workspace/WorkspaceTypes'
 
 export type GitHubAssessmentWorkspaceAttr = {
-  hasUnsavedChanges: boolean;
-};
+    hasUnsavedChanges: boolean
+}
 
-export type GitHubAssessmentWorkspaceState = WorkspaceState & GitHubAssessmentWorkspaceAttr;
+export type GitHubAssessmentWorkspaceState = WorkspaceState & GitHubAssessmentWorkspaceAttr

@@ -11,18 +11,18 @@
  * @param height desired height of object
  */
 export function resize(
-  obj: Phaser.GameObjects.Image | Phaser.GameObjects.Rectangle,
-  width: number,
-  height?: number
+    obj: Phaser.GameObjects.Image | Phaser.GameObjects.Rectangle,
+    width: number,
+    height?: number
 ) {
-  const ratio = obj.displayHeight / obj.displayWidth;
-  if (!width) {
-    obj.displayWidth = height! / ratio;
-    obj.displayHeight = height!;
-  } else {
-    obj.displayWidth = width;
-    obj.displayHeight = height || width * ratio;
-  }
+    const ratio = obj.displayHeight / obj.displayWidth
+    if (!width) {
+        obj.displayWidth = height! / ratio
+        obj.displayHeight = height!
+    } else {
+        obj.displayWidth = width
+        obj.displayHeight = height || width * ratio
+    }
 }
 
 /**
@@ -34,15 +34,15 @@ export function resize(
  * @param height height
  */
 export function resizeOverflow(
-  obj: Phaser.GameObjects.Image | Phaser.GameObjects.Rectangle,
-  width: number,
-  height: number
+    obj: Phaser.GameObjects.Image | Phaser.GameObjects.Rectangle,
+    width: number,
+    height: number
 ) {
-  if (obj.displayWidth > obj.displayHeight) {
-    resize(obj, 0, height);
-  } else {
-    resize(obj, width);
-  }
+    if (obj.displayWidth > obj.displayHeight) {
+        resize(obj, 0, height)
+    } else {
+        resize(obj, width)
+    }
 }
 
 /**
@@ -54,15 +54,15 @@ export function resizeOverflow(
  * @param height height
  */
 export function resizeUnderflow(
-  obj: Phaser.GameObjects.Image | Phaser.GameObjects.Rectangle,
-  width: number,
-  height: number
+    obj: Phaser.GameObjects.Image | Phaser.GameObjects.Rectangle,
+    width: number,
+    height: number
 ) {
-  if (obj.displayWidth > obj.displayHeight) {
-    resize(obj, width);
-  } else {
-    resize(obj, 0, height);
-  }
+    if (obj.displayWidth > obj.displayHeight) {
+        resize(obj, width)
+    } else {
+        resize(obj, 0, height)
+    }
 }
 
 /**
@@ -72,9 +72,9 @@ export function resizeUnderflow(
  * @param factor number of times to multiply the object's width and height by.
  */
 export function multiplyDimensions(
-  obj: Phaser.GameObjects.Image | Phaser.GameObjects.Rectangle,
-  factor: number
+    obj: Phaser.GameObjects.Image | Phaser.GameObjects.Rectangle,
+    factor: number
 ) {
-  obj.displayWidth *= factor;
-  obj.displayHeight *= factor;
+    obj.displayWidth *= factor
+    obj.displayHeight *= factor
 }

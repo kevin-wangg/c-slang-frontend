@@ -1,6 +1,6 @@
-import GameMap from '../location/GameMap';
-import GameObjective from '../objective/GameObjective';
-import GameTask from '../task/GameTask';
+import GameMap from '../location/GameMap'
+import GameObjective from '../objective/GameObjective'
+import GameTask from '../task/GameTask'
 
 /**
  * Encapsulates information about a checkpoint
@@ -11,11 +11,11 @@ import GameTask from '../task/GameTask';
  * @prop {GameTask} tasks - Task object that stores all the task ids, corresponding titles, descriptions, and their state of completion during the game
  */
 export type GameCheckpoint = {
-  map: GameMap;
-  startingLoc: string;
-  objectives: GameObjective;
-  tasks: GameTask;
-};
+    map: GameMap
+    startingLoc: string
+    objectives: GameObjective
+    tasks: GameTask
+}
 
 /**
  * Encapsulates information about a chapter
@@ -25,7 +25,7 @@ export type GameCheckpoint = {
  * @prop {string[]} filenames - the filenames of the checkpoint that comprise the chapter
  */
 export type GameChapter = {
-  imageUrl: string;
-  title: string;
-  filenames: string[];
-};
+    imageUrl: string
+    title: string
+    filenames: string[]
+}

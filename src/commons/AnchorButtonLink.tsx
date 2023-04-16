@@ -1,41 +1,41 @@
-import { AnchorButton } from '@blueprintjs/core';
-import React from 'react';
-import { Link, LinkProps } from 'react-router-dom';
+import { AnchorButton } from '@blueprintjs/core'
+import React from 'react'
+import { Link, LinkProps } from 'react-router-dom'
 
-import { PropsType } from './utils/TypeHelper';
+import { PropsType } from './utils/TypeHelper'
 
 // Adapted from https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/modules/Link.js
 
 function makeAnchorButton(anchorButtonProps: PropsType<AnchorButton>) {
-  return (props: { href: string; navigate: () => void }) => (
-    <AnchorButton
-      onClick={(event: React.MouseEvent<HTMLElement>) => {
-        try {
-          if (anchorButtonProps.onClick) {
-            anchorButtonProps.onClick(event);
-          }
-        } catch (ex) {
-          event.preventDefault();
-          throw ex;
-        }
+    return (props: { href: string; navigate: () => void }) => (
+        <AnchorButton
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+                try {
+                    if (anchorButtonProps.onClick) {
+                        anchorButtonProps.onClick(event)
+                    }
+                } catch (ex) {
+                    event.preventDefault()
+                    throw ex
+                }
 
-        if (
-          !event.defaultPrevented &&
-          event.button === 0 &&
-          (!anchorButtonProps.target || anchorButtonProps.target === '_self') &&
-          !event.metaKey &&
-          !event.altKey &&
-          !event.ctrlKey &&
-          !event.shiftKey
-        ) {
-          event.preventDefault();
-          props.navigate();
-        }
-      }}
-      href={props.href}
-      {...anchorButtonProps}
-    />
-  );
+                if (
+                    !event.defaultPrevented &&
+                    event.button === 0 &&
+                    (!anchorButtonProps.target || anchorButtonProps.target === '_self') &&
+                    !event.metaKey &&
+                    !event.altKey &&
+                    !event.ctrlKey &&
+                    !event.shiftKey
+                ) {
+                    event.preventDefault()
+                    props.navigate()
+                }
+            }}
+            href={props.href}
+            {...anchorButtonProps}
+        />
+    )
 }
 
 /**
@@ -50,9 +50,9 @@ function makeAnchorButton(anchorButtonProps: PropsType<AnchorButton>) {
  * which is not ideal.
  */
 export default function AnchorButtonLink({
-  to,
-  replace,
-  ...anchorButtonProps
+    to,
+    replace,
+    ...anchorButtonProps
 }: PropsType<AnchorButton> & { to: LinkProps['to']; replace?: boolean }) {
-  return <Link to={to} replace={replace} component={makeAnchorButton(anchorButtonProps)} />;
+    return <Link to={to} replace={replace} component={makeAnchorButton(anchorButtonProps)} />
 }
